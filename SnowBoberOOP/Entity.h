@@ -5,9 +5,6 @@
 #include "Position.h"
 class Entity
 {
-protected: 
-	Position position;
-	
 public:
 	Entity();
 
