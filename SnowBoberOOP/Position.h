@@ -4,16 +4,20 @@
 
 class Position
 {
+private:
+	int x;
+	int y;
+
 public:
 	Position();
 
 	Position(int x_, int y_);
 
-	int getX();
+	int getX() const;
 
 	void setX(int x_);
 
-	int getY();
+	int getY() const;
 
 	void setY(int y_);
 };

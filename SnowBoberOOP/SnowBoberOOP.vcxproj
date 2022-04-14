@@ -151,16 +151,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="CollisionInfo.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityWithTexture.cpp" />
+    <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="GridStick.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Position.cpp" />
+    <ClCompile Include="Rail.cpp" />
+    <ClCompile Include="ScorePoint.cpp" />
     <ClCompile Include="SnowBoberOOP.cpp" />
     <ClCompile Include="Visual.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="CollisionInfo.h" />
+    <ClInclude Include="CollisionType.h" />
+    <ClInclude Include="ConstValues.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityWithTexture.h" />
+    <ClInclude Include="Grid.h" />
+    <ClInclude Include="GridStick.h" />
+    <ClInclude Include="ICollidable.h" />
+    <ClInclude Include="IPlayerActions.h" />
+    <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="IMovable.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleType.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="Rail.h" />
+    <ClInclude Include="ScorePoint.h" />
     <ClInclude Include="Visual.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

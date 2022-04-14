@@ -1,22 +1,30 @@
 #pragma once
 #ifndef VISUAL_H
 #define VISUAL_H
+
+#include <SFML/Graphics.hpp>
+
 class Visual
 {
+private:
+    sf::Texture texture;
+    int imgWidth;
+    int imgHeight;
+    float rotation;
 public:
-    Visual(Texture texture_, int imgWidth_, int imgHeight_);
+    Visual(std::string texturePath, int imgWidth_, int imgHeight_);
 
-    Visual(TextureRegion texture_, int imgWidth_, int imgHeight_, float rotation_);
+    Visual(std::string texturePath, int imgWidth_, int imgHeight_, float rotation_);
 
-    TextureRegion getTexture();
+    sf::Texture getTexture() const;
 
-    void setTexture(TextureRegion texture_);
+    void setTexture(const sf::Texture &texture_);
 
-    int getImgWidth();
+    int getImgWidth() const;
 
-    int getImgHeight();
+    int getImgHeight() const;
 
-    float getRotation();
+    float getRotation() const;
 
     void setRotation(float rotation_);
 };

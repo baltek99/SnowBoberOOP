@@ -1,48 +1,39 @@
 #include "Visual.h"
 
-class Visual {
-    private TextureRegion texture;
-private:
-    int imgWidth;
-    int imgHeight;
-    float rotation;
+Visual::Visual(std::string texturePath, int imgWidth_, int imgHeight_) {
+    texture.loadFromFile(texturePath);
+    imgWidth = imgWidth_;
+    imgHeight = imgHeight_;
+    rotation = 0;
+}
 
-public :
-    Visual(Texture texture_, int imgWidth_, int imgHeight_) {
-        texture = new TextureRegion(texture_);
-        imgWidth = imgWidth_;
-        imgHeight = imgHeight_;
-        rotation = 0;
-    }
+Visual::Visual(std::string texturePath, int imgWidth_, int imgHeight_, float rotation_) {
+    texture.loadFromFile(texturePath);
+    imgWidth = imgWidth_;
+    imgHeight = imgHeight_;
+    rotation = rotation_;
+}
 
-    Visual(TextureRegion texture_, int imgWidth_, int imgHeight_, float rotation_) {
-        texture = texture_;
-        imgWidth = imgWidth_;
-        imgHeight = imgHeight_;
-        rotation = rotation_;
-    }
+sf::Texture Visual::getTexture() const {
+    return texture;
+}
 
-    TextureRegion getTexture() {
-        return texture;
-    }
+void Visual::setTexture(const sf::Texture &texture_) {
+    texture = texture_;
+}
 
-    void setTexture(TextureRegion texture_) {
-        texture = texture_;
-    }
+int Visual::getImgWidth() const {
+    return imgWidth;
+}
 
-    int getImgWidth() {
-        return imgWidth;
-    }
+int Visual::getImgHeight() const {
+    return imgHeight;
+}
 
-    int getImgHeight() {
-        return imgHeight;
-    }
+float Visual::getRotation() const {
+    return rotation;
+}
 
-    float getRotation() {
-        return rotation;
-    }
-
-    void setRotation(float rotation_) {
-        rotation = rotation_;
-    }
-};
+void Visual::setRotation(float rotation_) {
+    rotation = rotation_;
+}

@@ -3,14 +3,18 @@
 #define ENTITY_H
 
 #include "Position.h"
+
 class Entity
 {
+protected:
+	Position position;
+
 public:
 	Entity();
 
-	Entity(Position pos);
+	Entity(const Position &pos);
 
-	Position getPosition();
+	Position getPosition() const;
 
 	virtual ~Entity();
 };

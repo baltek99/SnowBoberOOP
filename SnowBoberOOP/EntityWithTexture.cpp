@@ -1,43 +1,31 @@
 #include "EntityWithTexture.h"
-#include "Position.h"
-#include "Entity.h"
-#include "Visual.h"
 
-class EntityWithTexture : Entity {
-private:
-    Visual visual;
-protected:
-    int zIndex = 0;
+EntityWithTexture::EntityWithTexture(const Position &position_, const Visual &visual_) : Entity(position_), visual(visual_), zIndex(0) {}
 
-    public EntityWithTexture(Position position, Visual visual) : Entity(position) {
-        this.visual = visual;
-    }
+Visual EntityWithTexture::getVisual() const {
+    return visual;
+}
 
-    public Visual getVisual() {
-        return visual;
-    }
+void EntityWithTexture::setVisual(const Visual &visual_) {
+    visual = visual_;
+}
 
-    public void setVisual(Visual visual) {
-        this.visual = visual;
-    }
+int EntityWithTexture::getZIndex() const {
+    return zIndex;
+}
 
-    public int getZIndex() {
-        return zIndex;
-    }
+void EntityWithTexture::render(/*SpriteBatch batch*/) {
+    //batch.draw(
+    //    visual.gettexture(),
+    //    this.getposition().getx(),
+    //    this.getposition().gety(),
+    //    visual.getimgwidth() / 2f,
+    //    visual.getimgheight() / 2f,
+    //    visual.getimgwidth(),
+    //    visual.getimgheight(),
+    //    1,
+    //    1,
+    //    visual.getrotation()
+    //);
+}
 
-    @Override
-    public void render(SpriteBatch batch) {
-        batch.draw(
-            visual.getTexture(),
-            this.getPosition().getX(),
-            this.getPosition().getY(),
-            visual.getImgWidth() / 2f,
-            visual.getImgHeight() / 2f,
-            visual.getImgWidth(),
-            visual.getImgHeight(),
-            1,
-            1,
-            visual.getRotation()
-        );
-    }
-};
