@@ -13,6 +13,8 @@ private:
     float rotation;
 public:
     Visual(std::string texturePath, int imgWidth_, int imgHeight_);
+    
+    Visual(const sf::Texture& texture_, int imgWidth_, int imgHeight_);
 
     Visual(std::string texturePath, int imgWidth_, int imgHeight_, float rotation_);
 

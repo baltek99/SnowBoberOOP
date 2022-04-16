@@ -7,6 +7,13 @@ Visual::Visual(std::string texturePath, int imgWidth_, int imgHeight_) {
     rotation = 0;
 }
 
+Visual::Visual(const sf::Texture& texture_, int imgWidth_, int imgHeight_) {
+    texture = texture_;
+    imgWidth = imgWidth_;
+    imgHeight = imgHeight_;
+    rotation = 0;
+}
+
 Visual::Visual(std::string texturePath, int imgWidth_, int imgHeight_, float rotation_) {
     texture.loadFromFile(texturePath);
     imgWidth = imgWidth_;

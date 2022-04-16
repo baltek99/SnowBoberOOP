@@ -158,11 +158,14 @@
     <ClCompile Include="EntityWithTexture.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridStick.cpp" />
+    <ClCompile Include="Life.cpp" />
     <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Rail.cpp" />
     <ClCompile Include="ScorePoint.cpp" />
     <ClCompile Include="SnowBoberOOP.cpp" />
+    <ClCompile Include="Util.cpp" />
     <ClCompile Include="Visual.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,11 +182,15 @@
     <ClInclude Include="IPlayerActions.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IMovable.h" />
+    <ClInclude Include="Life.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ObstacleType.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Rail.h" />
     <ClInclude Include="ScorePoint.h" />
+    <ClInclude Include="Util.h" />
     <ClInclude Include="Visual.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
