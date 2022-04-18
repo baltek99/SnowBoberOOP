@@ -9,6 +9,6 @@ public :
 
     void setRailCollisionHeight(int height);
     
-    void collide(ICollidable &object) override;
+    void collide(ICollidable *object) override;
 };
 

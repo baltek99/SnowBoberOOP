@@ -63,7 +63,7 @@ public :
    
     void speedUp(long gameFrame) override;
 
-    void collide(ICollidable &collidable) override;
+    void collide(ICollidable * collidable) override;
 
     void render(/*SpriteBatch batch*/) override;
 };

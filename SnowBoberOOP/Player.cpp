@@ -2,6 +2,7 @@
 #include "ConstValues.h"
 #include "Util.h"
 #include "Obstacle.h"
+#include "Rail.h"
 
 Player::Player(const Position& position_, const Visual& visual_, std::string name_) : EntityWithTexture(position_, visual_) {
     name = name_;
@@ -177,30 +178,44 @@ void Player::speedUp(long gameFrame) {
     }
 }
 
-void Player::collide(ICollidable& collidable) {
-    Obstacle obstacle = (Obstacle)collidable;
-    if (obstacle.obstacleType == ObstacleType.SCORE_POINT) {
-        //            System.out.println("Punkt");
+void Player::collide(ICollidable* collidable) {
+    Obstacle* obstacle = (Obstacle*) collidable;
+    if (obstacle->getObstacleType() == ObstacleType::SCORE_POINT) {
         score++;
     }
-    else if (obstacle.obstacleType == ObstacleType.BOX || (obstacle.obstacleType == ObstacleType.RAIL &&
-        (playerState == PlayerState.IDLE || playerState == PlayerState.CROUCH))) {
-        lives.poll();
+    else if (obstacle->getObstacleType() == ObstacleType::BOX || (obstacle->getObstacleType() == ObstacleType::RAIL &&
+        (playerState == PlayerState::IDLE || playerState == PlayerState::CROUCH))) {
+        lives.pop();
         immortal = true;
     }
-    else if (obstacle.obstacleType == ObstacleType.RAIL && (playerState == PlayerState.JUMPING ||
-        playerState == PlayerState.JUMPING_FROM_CROUCH || playerState == PlayerState.JUMPING_ON_RAIL)) {
-        this.getPosition().setY(ConstValues.SLIDING_ON_RAIL_Y);
-        playerState = PlayerState.SLIDING;
-        Texture texture = new Texture("bober-rail.png");
-        this.setVisual(new Visual(texture, ConstValues.BOBER_ON_RAIL_WIDTH, ConstValues.BOBER_ON_RAIL_HEIGHT));
-        ((Rail)obstacle).setRailCollisionHeight(1);
-        //            System.out.println("rail");
+    else if (obstacle->getObstacleType() == ObstacleType::RAIL && (playerState == PlayerState::JUMPING ||
+        playerState == PlayerState::JUMPING_FROM_CROUCH || playerState == PlayerState::JUMPING_ON_RAIL)) {
+        getPosition().setY(ConstValues::SLIDING_ON_RAIL_Y);
+        playerState = PlayerState::SLIDING;
+        sf::Texture texture;
+        texture.loadFromFile("bober-rail.png");
+        setVisual(Visual(texture, ConstValues::BOBER_ON_RAIL_WIDTH, ConstValues::BOBER_ON_RAIL_HEIGHT));
+        Rail* rail = (Rail*)obstacle;
+        rail->setRailCollisionHeight(1);
     }
-    else if (obstacle.obstacleType == ObstacleType.GRID && playerState != PlayerState.CROUCH) {
-        lives.poll();
+    else if (obstacle->getObstacleType() == ObstacleType::GRID && playerState != PlayerState::CROUCH) {
+        lives.pop();
         immortal = true;
     }
 }
 
-void Player::render(/*SpriteBatch batch*/) override;
+void Player::render(/*SpriteBatch batch*/) {
+    if (immortal && immortalDuration > 0) {
+        if (immortalDuration % 40 < 20) {
+            EntityWithTexture::render();
+        }
+        immortalDuration--;
+    }
+    else if (immortal) {
+        immortal = false;
+        immortalDuration = initialImmortalDurationVal;
+    }
+    else {
+        EntityWithTexture::render();
+    }
+}

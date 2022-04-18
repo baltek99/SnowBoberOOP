@@ -2,5 +2,5 @@
 
 class ICollidable {
 public :
-	virtual void collide(ICollidable &object) = 0;
+	virtual void collide(ICollidable *object) = 0;
 };
