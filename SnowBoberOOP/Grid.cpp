@@ -7,4 +7,4 @@ Grid::Grid(const Position &position_, int speed_) :
 	collisionInfo = CollisionInfo(168, 350);
 }
 
-void Grid::collide(ICollidable &object) {}
+void Grid::collide(ICollidable *object) {}

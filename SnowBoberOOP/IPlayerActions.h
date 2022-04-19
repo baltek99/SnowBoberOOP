@@ -2,7 +2,7 @@
 
 class IPlayerActions {
 public :
-	virtual void jump(long gameFrame);
+	virtual void jump(long gameFrame) = 0;
 
-	virtual void crouch();
+	virtual void crouch() = 0;
 };

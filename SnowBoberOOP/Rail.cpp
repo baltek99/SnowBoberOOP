@@ -10,4 +10,4 @@ void Rail::setRailCollisionHeight(int height) {
 	collisionInfo = CollisionInfo(ConstValues::RAIL_WIDTH, height);
 }
 
-void Rail::collide(ICollidable& object) {}
+void Rail::collide(ICollidable* object) {}

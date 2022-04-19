@@ -43,7 +43,7 @@ public :
 
     std::queue<Life> getLives() const;
     
-    int getNumberOfLives() const;
+    size_t getNumberOfLives() const;
 
     int getScore() const;
 

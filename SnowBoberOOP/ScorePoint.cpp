@@ -6,4 +6,4 @@ ScorePoint::ScorePoint(const Position &position_, int speed_) :
 	collisionInfo = CollisionInfo(1, ConstValues::SCORE_HEIGHT);
 }
 
-void ScorePoint::collide(ICollidable &object) {}
+void ScorePoint::collide(ICollidable *object) {}

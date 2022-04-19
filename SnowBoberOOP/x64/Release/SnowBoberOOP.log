@@ -1,15 +1,7 @@
-﻿  Background.cpp
-  Box.cpp
-  EntityWithTexture.cpp
-  Grid.cpp
-  GridStick.cpp
-  Obstacle.cpp
-  Rail.cpp
-  ScorePoint.cpp
-  SnowBoberOOP.cpp
+﻿  SnowBoberOOP.cpp
   Trwa generowanie kodu
-  23 of 29 functions (79.3%) were compiled, the rest were copied from previous compilation.
-    19 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+  9 of 123 functions ( 7.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   SnowBoberOOP.vcxproj -> C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\x64\Release\SnowBoberOOP.exe

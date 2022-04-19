@@ -48,7 +48,7 @@ std::queue<Life> Player::getLives() const {
     return lives;
 }
 
-int Player::getNumberOfLives() const {
+size_t Player::getNumberOfLives() const {
     return lives.size();
 }
 
@@ -134,8 +134,8 @@ void Player::move(long gameFrame) {
         }
         else {
             position.setY((int)Util::lerp(
-                jumpFrom,
-                jumpFrom + jumpHeight,
+                static_cast<float>(jumpFrom),
+                static_cast<float>(jumpFrom + jumpHeight),
                 Util::spike((gameFrame - startJumpFrame) / jumpDuration)
             ));
 
@@ -179,7 +179,7 @@ void Player::speedUp(long gameFrame) {
 }
 
 void Player::collide(ICollidable* collidable) {
-    Obstacle* obstacle = (Obstacle*) collidable;
+    Obstacle* obstacle = static_cast<Obstacle*>(collidable);
     if (obstacle->getObstacleType() == ObstacleType::SCORE_POINT) {
         score++;
     }
@@ -195,7 +195,7 @@ void Player::collide(ICollidable* collidable) {
         sf::Texture texture;
         texture.loadFromFile("bober-rail.png");
         setVisual(Visual(texture, ConstValues::BOBER_ON_RAIL_WIDTH, ConstValues::BOBER_ON_RAIL_HEIGHT));
-        Rail* rail = (Rail*)obstacle;
+        Rail* rail = static_cast<Rail*>(obstacle);
         rail->setRailCollisionHeight(1);
     }
     else if (obstacle->getObstacleType() == ObstacleType::GRID && playerState != PlayerState::CROUCH) {

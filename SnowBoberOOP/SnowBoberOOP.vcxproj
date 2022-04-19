@@ -156,6 +156,7 @@
     <ClCompile Include="CollisionInfo.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityWithTexture.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridStick.cpp" />
     <ClCompile Include="HighScores.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="ConstValues.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityWithTexture.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridStick.h" />
     <ClInclude Include="HighScores.h" />

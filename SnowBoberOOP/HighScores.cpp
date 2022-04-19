@@ -12,6 +12,6 @@ void HighScores::addResult(const std::string name, int score) {
 	//sort
 
 	if (scores.size() > maxNumberOfResults) {
-		scores.
+		//scores.
 	}
 }

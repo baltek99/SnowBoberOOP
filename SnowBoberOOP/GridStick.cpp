@@ -6,4 +6,4 @@ GridStick::GridStick(const Position &position_, int speed_) :
 	collisionInfo = CollisionInfo(0, 0);
 }
 
-void GridStick::collide(ICollidable &object) {}
+void GridStick::collide(ICollidable *object) {}
