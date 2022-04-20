@@ -4,7 +4,7 @@
 #include "Obstacle.h"
 #include "Rail.h"
 
-Player::Player() : EntityWithTexture(Position(), Visual("assets/bober-stand.png", 0, 0)) {
+Player::Player() : EntityWithTexture(Position(), Visual(TexturesManager::boberStand, 0, 0)) {
     name = "";
     initVariables();
 }
@@ -88,22 +88,21 @@ void Player::moveLeft() {
 }
 
 void Player::jump(long gameFrame) {
-    sf::Texture texture;
     if (playerState == PlayerState::SLIDING) {
         playerState = PlayerState::JUMPING_ON_RAIL;
         jumpFrom = ConstValues::JUMP_FROM_RAIL_Y;
         startJumpFrame = gameFrame;
-        texture.loadFromFile("bober-flip.png");
-        setVisual(Visual(texture, ConstValues::BOBER_IN_JUMP_WIDTH, ConstValues::BOBER_IN_JUMP_HEIGHT));
+        setVisual(Visual(TexturesManager::boberFlip, ConstValues::BOBER_IN_JUMP_WIDTH, ConstValues::BOBER_IN_JUMP_HEIGHT));
     }
     else if (playerState != PlayerState::JUMPING && playerState != PlayerState::JUMPING_ON_RAIL
         && playerState != PlayerState::JUMPING_FROM_CROUCH) {
+        sf::Texture texture;
         if (playerState == PlayerState::CROUCH) {
-            texture.loadFromFile("bober-flip.png");
+            texture = TexturesManager::boberFlip;
             playerState = PlayerState::JUMPING_FROM_CROUCH;
         }
         else {
-            texture.loadFromFile("bober-jump.png");
+            texture = TexturesManager::boberJump;
             playerState = PlayerState::JUMPING;
         }
         jumpFrom = ConstValues::JUMP_FROM_GROUND_Y;
@@ -117,17 +116,13 @@ void Player::crouch() {
         playerState = PlayerState::CROUCH;
 
         position.setY(100);
-        sf::Texture texture;
-        texture.loadFromFile("bober-luzny.png");
-        setVisual(Visual(texture, ConstValues::BOBER_CROUCH_WIDTH, ConstValues::BOBER_CROUCH_HEIGHT));
+        setVisual(Visual(TexturesManager::boberCrouch, ConstValues::BOBER_CROUCH_WIDTH, ConstValues::BOBER_CROUCH_HEIGHT));
     }
     else if (playerState == PlayerState::CROUCH) {
         playerState = PlayerState::IDLE;
 
         position.setY(ConstValues::IDLE_RIDE_Y);
-        sf::Texture texture;
-        texture.loadFromFile("bober-stand.png");
-        setVisual(Visual(texture, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
+        setVisual(Visual(TexturesManager::boberStand, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
     }
 }
 
@@ -137,9 +132,7 @@ void Player::move(long gameFrame) {
             playerState = PlayerState::IDLE;
             position.setY(ConstValues::IDLE_RIDE_Y);
             getVisual().setRotation(0);
-            sf::Texture texture;
-            texture.loadFromFile("bober-stand.png");
-            setVisual(Visual(texture, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
+            setVisual(Visual(TexturesManager::boberStand, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
         }
         else {
             position.setY((int)Util::lerp(
@@ -201,9 +194,7 @@ void Player::collide(ICollidable* collidable) {
         playerState == PlayerState::JUMPING_FROM_CROUCH || playerState == PlayerState::JUMPING_ON_RAIL)) {
         getPosition().setY(ConstValues::SLIDING_ON_RAIL_Y);
         playerState = PlayerState::SLIDING;
-        sf::Texture texture;
-        texture.loadFromFile("bober-rail.png");
-        setVisual(Visual(texture, ConstValues::BOBER_ON_RAIL_WIDTH, ConstValues::BOBER_ON_RAIL_HEIGHT));
+        setVisual(Visual(TexturesManager::boberSlide, ConstValues::BOBER_ON_RAIL_WIDTH, ConstValues::BOBER_ON_RAIL_HEIGHT));
         Rail* rail = static_cast<Rail*>(obstacle);
         rail->setRailCollisionHeight(1);
     }

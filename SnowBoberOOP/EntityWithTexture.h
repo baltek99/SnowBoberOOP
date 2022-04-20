@@ -3,6 +3,7 @@
 #include "IRenderable.h"
 #include "Visual.h"
 #include "Entity.h"
+#include "TexturesManager.h"
 
 class EntityWithTexture : public Entity, public IRenderable {
 protected:

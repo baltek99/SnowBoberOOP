@@ -5,21 +5,21 @@
 class TexturesManager
 {
 public :
-    sf::Texture background;
-    sf::Texture start;
-    sf::Texture gameOver;
-    sf::Texture highScores;
-    sf::Texture boberStand;
-    sf::Texture boberCrouch;
-    sf::Texture boberJump;
-    sf::Texture boberFlip;
-    sf::Texture boberSlide;
-    sf::Texture box;
-    sf::Texture rail;
-    sf::Texture pipe;
-    sf::Texture grid;
-    sf::Texture gridStick;
-    sf::Texture heart;
+    static sf::Texture background;
+    static sf::Texture start;
+    static sf::Texture gameOver;
+    static sf::Texture highScores;
+    static sf::Texture boberStand;
+    static sf::Texture boberCrouch;
+    static sf::Texture boberJump;
+    static sf::Texture boberFlip;
+    static sf::Texture boberSlide;
+    static sf::Texture box;
+    static sf::Texture rail;
+    static sf::Texture pipe;
+    static sf::Texture grid;
+    static sf::Texture gridStick;
+    static sf::Texture heart;
 
     TexturesManager();
 };

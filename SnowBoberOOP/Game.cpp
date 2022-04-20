@@ -155,17 +155,12 @@ void Game::resizeView(sf::RenderWindow& window_, sf::View& view_) {
     float aspectRatio =  wx / wy;
     float originalRatio = float(ConstValues::V_WIDTH) / float(ConstValues::V_HEIGHT);
 
-
     if (aspectRatio > originalRatio) {
         float heightRatio = wy / float(ConstValues::V_HEIGHT);
         float expectedWidth = float(ConstValues::V_WIDTH) * heightRatio;
         float widthDiff = wx - expectedWidth;
 
-        printf("Wymiary : ratio: %f, exW %f curW %f diff %f\n", aspectRatio, expectedWidth, wx, widthDiff);
-
         view_.setViewport(sf::FloatRect((widthDiff / 4.f) / wx, 0.f, (1.f - (widthDiff / 2.f) / wx), 1.f));
-
-        std::cout << view_.getViewport().left;
     }
     else if (aspectRatio < originalRatio) {
         float widthRatio = wx / float(ConstValues::V_WIDTH);

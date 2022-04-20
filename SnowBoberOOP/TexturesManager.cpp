@@ -1,5 +1,21 @@
 #include "TexturesManager.h"
 
+sf::Texture TexturesManager::background;
+sf::Texture TexturesManager::start;
+sf::Texture TexturesManager::gameOver;
+sf::Texture TexturesManager::highScores;
+sf::Texture TexturesManager::boberStand;
+sf::Texture TexturesManager::boberCrouch;
+sf::Texture TexturesManager::boberJump;
+sf::Texture TexturesManager::boberFlip;
+sf::Texture TexturesManager::boberSlide;
+sf::Texture TexturesManager::box;
+sf::Texture TexturesManager::rail;
+sf::Texture TexturesManager::pipe;
+sf::Texture TexturesManager::grid;
+sf::Texture TexturesManager::gridStick;
+sf::Texture TexturesManager::heart;
+
 TexturesManager::TexturesManager() {
     background.loadFromFile("assets/background.jpg");
     start.loadFromFile("assets/start.jpg");
