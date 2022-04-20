@@ -11,3 +11,8 @@ CollisionInfo::CollisionInfo(int width, int height) {
     rectangle.height = height;
     collisionType = CollisionType::NONE;
 }
+
+CollisionInfo::CollisionInfo(const sf::IntRect& rect) {
+    rectangle = rect;
+    collisionType = CollisionType::NONE;
+}

@@ -12,5 +12,7 @@ public :
     CollisionInfo();
 
     CollisionInfo(int width, int height);
+
+    CollisionInfo(const sf::IntRect& rect);
 };
 

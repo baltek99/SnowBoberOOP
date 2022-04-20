@@ -4,8 +4,17 @@
 #include "Obstacle.h"
 #include "Rail.h"
 
+Player::Player() : EntityWithTexture(Position(), Visual("assets/bober-stand.png", 0, 0)) {
+    name = "";
+    initVariables();
+}
+
 Player::Player(const Position& position_, const Visual& visual_, std::string name_) : EntityWithTexture(position_, visual_) {
     name = name_;
+    initVariables();
+}
+
+void Player::initVariables() {
     jumpHeight = 120;
     jumpDuration = 110;
     flipRotationSpeed = 3.4f;
@@ -21,7 +30,7 @@ Player::Player(const Position& position_, const Visual& visual_, std::string nam
     lives.push(Life(Position(ConstValues::HEART_POSITION_X_2, ConstValues::HEART_POSITION_Y)));
     lives.push(Life(Position(ConstValues::HEART_POSITION_X_3, ConstValues::HEART_POSITION_Y)));
     playerState = PlayerState::IDLE;
-    collisionInfo = CollisionInfo(visual.getImgWidth(), visual.getImgHeight());
+    collisionInfo = CollisionInfo(visual.getSprite().getTextureRect());
 }
 
 CollisionInfo Player::getCollisionInfo() const {
@@ -204,10 +213,10 @@ void Player::collide(ICollidable* collidable) {
     }
 }
 
-void Player::render(/*SpriteBatch batch*/) {
+void Player::render(sf::RenderWindow& window) {
     if (immortal && immortalDuration > 0) {
         if (immortalDuration % 40 < 20) {
-            EntityWithTexture::render();
+            EntityWithTexture::render(window);
         }
         immortalDuration--;
     }
@@ -216,6 +225,6 @@ void Player::render(/*SpriteBatch batch*/) {
         immortalDuration = initialImmortalDurationVal;
     }
     else {
-        EntityWithTexture::render();
+        EntityWithTexture::render(window);
     }
 }

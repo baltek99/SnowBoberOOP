@@ -29,7 +29,11 @@ private :
     int speedCount;
 
 public :
+    Player();
+
     Player(const Position &position_, const Visual &visual_, std::string name_);
+
+    void initVariables();
 
     CollisionInfo getCollisionInfo() const;
 
@@ -65,6 +69,6 @@ public :
 
     void collide(ICollidable * collidable) override;
 
-    void render(/*SpriteBatch batch*/) override;
+    void render(sf::RenderWindow& window) override;
 };
 

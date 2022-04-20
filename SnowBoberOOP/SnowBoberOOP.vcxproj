@@ -168,6 +168,7 @@
     <ClCompile Include="ResultBind.cpp" />
     <ClCompile Include="ScorePoint.cpp" />
     <ClCompile Include="SnowBoberOOP.cpp" />
+    <ClCompile Include="TexturesManager.cpp" />
     <ClCompile Include="Util.cpp" />
     <ClCompile Include="Visual.cpp" />
   </ItemGroup>
@@ -180,6 +181,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityWithTexture.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridStick.h" />
     <ClInclude Include="HighScores.h" />
@@ -196,6 +198,7 @@
     <ClInclude Include="Rail.h" />
     <ClInclude Include="ResultBind.h" />
     <ClInclude Include="ScorePoint.h" />
+    <ClInclude Include="TexturesManager.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="Visual.h" />
   </ItemGroup>

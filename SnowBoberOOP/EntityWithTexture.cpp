@@ -14,18 +14,8 @@ int EntityWithTexture::getZIndex() const {
     return zIndex;
 }
 
-void EntityWithTexture::render(/*SpriteBatch batch*/) {
-    //batch.draw(
-    //    visual.gettexture(),
-    //    this.getposition().getx(),
-    //    this.getposition().gety(),
-    //    visual.getimgwidth() / 2f,
-    //    visual.getimgheight() / 2f,
-    //    visual.getimgwidth(),
-    //    visual.getimgheight(),
-    //    1,
-    //    1,
-    //    visual.getrotation()
-    //);
+void EntityWithTexture::render(sf::RenderWindow & window) {
+    visual.getSprite().setPosition(position.getX(), position.getY());
+    window.draw(visual.getSprite());
 }
 

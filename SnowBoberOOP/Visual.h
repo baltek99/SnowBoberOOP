@@ -7,24 +7,22 @@
 class Visual
 {
 private:
-    sf::Texture texture;
-    int imgWidth;
-    int imgHeight;
-    float rotation;
+    sf::Sprite sprite;
+
 public:
-    Visual(std::string texturePath, int imgWidth_, int imgHeight_);
+    Visual(std::string texturePath, float scaleX_, float scaleY_);
     
-    Visual(const sf::Texture& texture_, int imgWidth_, int imgHeight_);
+    Visual(const sf::Texture& texture_, float scaleX_, float scaleY_);
 
-    Visual(std::string texturePath, int imgWidth_, int imgHeight_, float rotation_);
+    Visual(std::string texturePath, float scaleX_, float scaleY_, float rotation_);
 
-    sf::Texture getTexture() const;
+    sf::Sprite getSprite() const;
 
     void setTexture(const sf::Texture &texture_);
 
-    int getImgWidth() const;
+    float getScaleX() const;
 
-    int getImgHeight() const;
+    float getScaleY() const;
 
     float getRotation() const;
 

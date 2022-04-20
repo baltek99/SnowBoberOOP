@@ -1,7 +1,7 @@
 #include "Obstacle.h"
 
 Obstacle::Obstacle(const Position& position_, const Visual& visual_, int speed_, ObstacleType obstacleType_) : EntityWithTexture(position_, visual_), speed(speed_), obstacleType(obstacleType_) {
-    collisionInfo = CollisionInfo(visual_.getImgWidth(), visual_.getImgHeight());
+    collisionInfo = CollisionInfo(visual_.getSprite().getTextureRect());
 }
 
 CollisionInfo Obstacle::getCollisionInfo() const {

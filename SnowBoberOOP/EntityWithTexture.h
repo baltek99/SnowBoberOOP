@@ -18,7 +18,7 @@ public:
 
     int getZIndex() const;
 
-    virtual void render(/*SpriteBatch batch*/) override;
+    virtual void render(sf::RenderWindow &window) override;
 };
 
 

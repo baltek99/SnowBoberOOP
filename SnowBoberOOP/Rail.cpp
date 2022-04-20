@@ -2,7 +2,7 @@
 #include "ConstValues.h"
 
 Rail::Rail(const Position &position_, int speed_) :
-	Obstacle(position_, Visual("", ConstValues::RAIL_WIDTH, ConstValues::RAIL_HEIGHT), speed_, ObstacleType::RAIL) {
+	Obstacle(position_, Visual("assets/rail.png", ConstValues::RAIL_WIDTH, ConstValues::RAIL_HEIGHT), speed_, ObstacleType::RAIL) {
 	collisionInfo = CollisionInfo(ConstValues::RAIL_WIDTH - 35, ConstValues::RAIL_HEIGHT);
 }
 

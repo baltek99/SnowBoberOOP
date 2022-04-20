@@ -1,46 +1,47 @@
 #include "Visual.h"
 
-Visual::Visual(std::string texturePath, int imgWidth_, int imgHeight_) {
+Visual::Visual(std::string texturePath, float scaleX_, float scaleY_) {
+    sf::Texture texture;
     texture.loadFromFile(texturePath);
-    imgWidth = imgWidth_;
-    imgHeight = imgHeight_;
-    rotation = 0;
+
+    sprite.setTexture(texture);
+    sprite.setScale(scaleX_, scaleY_);
 }
 
-Visual::Visual(const sf::Texture& texture_, int imgWidth_, int imgHeight_) {
-    texture = texture_;
-    imgWidth = imgWidth_;
-    imgHeight = imgHeight_;
-    rotation = 0;
+Visual::Visual(const sf::Texture& texture, float scaleX_, float scaleY_) {
+    sprite.setTexture(texture);
+    sprite.setScale(scaleX_, scaleY_);
 }
 
-Visual::Visual(std::string texturePath, int imgWidth_, int imgHeight_, float rotation_) {
+Visual::Visual(std::string texturePath, float scaleX_, float scaleY_, float rotation_) {
+    sf::Texture texture;
     texture.loadFromFile(texturePath);
-    imgWidth = imgWidth_;
-    imgHeight = imgHeight_;
-    rotation = rotation_;
+
+    sprite.setTexture(texture);
+    sprite.setScale(scaleX_, scaleY_);
+    sprite.setRotation(rotation_);
 }
 
-sf::Texture Visual::getTexture() const {
-    return texture;
+sf::Sprite Visual::getSprite() const {
+    return sprite;
 }
 
 void Visual::setTexture(const sf::Texture &texture_) {
-    texture = texture_;
+    sprite.setTexture(texture_);
 }
 
-int Visual::getImgWidth() const {
-    return imgWidth;
+float Visual::getScaleX() const {
+    return sprite.getScale().x;
 }
 
-int Visual::getImgHeight() const {
-    return imgHeight;
+float Visual::getScaleY() const {
+    return sprite.getScale().y;
 }
 
 float Visual::getRotation() const {
-    return rotation;
+    return sprite.getRotation();
 }
 
 void Visual::setRotation(float rotation_) {
-    rotation = rotation_;
+    sprite.setRotation(rotation_);
 }
