@@ -22,6 +22,10 @@ Visual::Visual(std::string texturePath, float scaleX_, float scaleY_, float rota
     sprite.setRotation(rotation_);
 }
 
+sf::Sprite & Visual::getSprite() {
+    return sprite;
+}
+
 sf::Sprite Visual::getSprite() const {
     return sprite;
 }

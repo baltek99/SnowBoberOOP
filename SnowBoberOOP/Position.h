@@ -5,21 +5,21 @@
 class Position
 {
 private:
-	int x;
-	int y;
+	float x;
+	float y;
 
 public:
 	Position();
 
-	Position(int x_, int y_);
+	Position(float x_, float y_);
 
-	int getX() const;
+	float getX() const;
 
-	void setX(int x_);
+	void setX(float x_);
 
-	int getY() const;
+	float getY() const;
 
-	void setY(int y_);
+	void setY(float y_);
 };
 #endif // !POSITION_H
 

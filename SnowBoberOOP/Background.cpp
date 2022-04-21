@@ -4,15 +4,15 @@
 Background::Background(const Position &position_, const Visual &visual_, int speed_) : EntityWithTexture(position_, visual_), speed(speed_) {}
 
 void Background::fixPosition() {
-    int pos = getPosition().getX();
+    int pos = position.getX();
     int width = ConstValues::V_WIDTH;
     if (pos <= -width) {
-        getPosition().setX(width + pos % width);
+        position.setX(width + pos % width);
     }
 }
 
 void Background::move(long gameFrame) {
-    getPosition().setX(getPosition().getX() + speed);
+    position.setX(position.getX() + speed);
 }
 
 void Background::speedUp(long gameFrame) {

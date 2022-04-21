@@ -13,9 +13,11 @@ ObstacleType Obstacle::getObstacleType() const {
 }
 
 void Obstacle::speedUp(long gameFrame) {
-
+    if (gameFrame % ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT == 0) {
+        speed--;
+    }
 }
 
 void Obstacle::move(long gameFrame) {
-
+    position.setX(position.getX() + speed);
 }

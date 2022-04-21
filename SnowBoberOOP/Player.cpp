@@ -18,17 +18,17 @@ void Player::initVariables() {
     jumpHeight = 120;
     jumpDuration = 110;
     flipRotationSpeed = 3.4f;
-    ollieUpRotationSpeed = 1.3f;
-    ollieDownRotationSpeed = 0.5f;
+    ollieUpRotationSpeed = 1.1f;
+    ollieDownRotationSpeed = 0.4f;
     initialImmortalDurationVal = 150;
     immortalDuration = 150;
     speedCount = 5;
     zIndex = 0;
     score = 0;
-    lives = std::queue<Life>();
-    lives.push(Life(Position(ConstValues::HEART_POSITION_X_1, ConstValues::HEART_POSITION_Y)));
-    lives.push(Life(Position(ConstValues::HEART_POSITION_X_2, ConstValues::HEART_POSITION_Y)));
-    lives.push(Life(Position(ConstValues::HEART_POSITION_X_3, ConstValues::HEART_POSITION_Y)));
+    lives = std::deque<Life>();
+    lives.push_back(Life(Position(ConstValues::HEART_POSITION_X_1, ConstValues::HEART_POSITION_Y)));
+    lives.push_back(Life(Position(ConstValues::HEART_POSITION_X_2, ConstValues::HEART_POSITION_Y)));
+    lives.push_back(Life(Position(ConstValues::HEART_POSITION_X_3, ConstValues::HEART_POSITION_Y)));
     playerState = PlayerState::IDLE;
     collisionInfo = CollisionInfo(visual.getSprite().getTextureRect());
 }
@@ -53,7 +53,7 @@ PlayerState Player::getPlayerState() const {
     return playerState;
 }
 
-std::queue<Life> Player::getLives() const {
+std::deque<Life> Player::getLives() const {
     return lives;
 }
 
@@ -94,20 +94,19 @@ void Player::jump(long gameFrame) {
         startJumpFrame = gameFrame;
         setVisual(Visual(TexturesManager::boberFlip, ConstValues::BOBER_IN_JUMP_WIDTH, ConstValues::BOBER_IN_JUMP_HEIGHT));
     }
-    else if (playerState != PlayerState::JUMPING && playerState != PlayerState::JUMPING_ON_RAIL
-        && playerState != PlayerState::JUMPING_FROM_CROUCH) {
-        sf::Texture texture;
+    else if (playerState != PlayerState::JUMPING && playerState != PlayerState::JUMPING_ON_RAIL && playerState != PlayerState::JUMPING_FROM_CROUCH) {
+
         if (playerState == PlayerState::CROUCH) {
-            texture = TexturesManager::boberFlip;
             playerState = PlayerState::JUMPING_FROM_CROUCH;
+            setVisual(Visual(TexturesManager::boberFlip, ConstValues::BOBER_IN_JUMP_WIDTH, ConstValues::BOBER_IN_JUMP_HEIGHT));
         }
         else {
-            texture = TexturesManager::boberJump;
             playerState = PlayerState::JUMPING;
+            setVisual(Visual(TexturesManager::boberJump, ConstValues::BOBER_IN_JUMP_WIDTH, ConstValues::BOBER_IN_JUMP_HEIGHT));
         }
         jumpFrom = ConstValues::JUMP_FROM_GROUND_Y;
         startJumpFrame = gameFrame;
-        setVisual(Visual(texture, ConstValues::BOBER_IN_JUMP_WIDTH, ConstValues::BOBER_IN_JUMP_HEIGHT));
+        
     }
 }
 
@@ -137,22 +136,22 @@ void Player::move(long gameFrame) {
         else {
             position.setY((int)Util::lerp(
                 static_cast<float>(jumpFrom),
-                static_cast<float>(jumpFrom + jumpHeight),
+                static_cast<float>(jumpFrom - jumpHeight),
                 Util::spike((gameFrame - startJumpFrame) / jumpDuration)
             ));
 
             if (playerState == PlayerState::JUMPING_ON_RAIL) {
-                getVisual().setRotation(getVisual().getRotation() + flipRotationSpeed);
+                getVisual().setRotation(getVisual().getRotation() - flipRotationSpeed);
             }
             else if (playerState == PlayerState::JUMPING_FROM_CROUCH) {
-                getVisual().setRotation(getVisual().getRotation() - flipRotationSpeed);
+                getVisual().setRotation(getVisual().getRotation() + flipRotationSpeed);
             }
             else {
                 if ((gameFrame - startJumpFrame) / jumpDuration < 0.15f) {
-                    getVisual().setRotation(getVisual().getRotation() + ollieUpRotationSpeed);
+                    getVisual().setRotation(getVisual().getRotation() - ollieUpRotationSpeed);
                 }
                 else if (getVisual().getRotation() > -10) {
-                    getVisual().setRotation(getVisual().getRotation() - ollieDownRotationSpeed);
+                    getVisual().setRotation(getVisual().getRotation() + ollieDownRotationSpeed);
                 }
             }
         }
@@ -187,7 +186,7 @@ void Player::collide(ICollidable* collidable) {
     }
     else if (obstacle->getObstacleType() == ObstacleType::BOX || (obstacle->getObstacleType() == ObstacleType::RAIL &&
         (playerState == PlayerState::IDLE || playerState == PlayerState::CROUCH))) {
-        lives.pop();
+        lives.pop_front();
         immortal = true;
     }
     else if (obstacle->getObstacleType() == ObstacleType::RAIL && (playerState == PlayerState::JUMPING ||
@@ -199,7 +198,7 @@ void Player::collide(ICollidable* collidable) {
         rail->setRailCollisionHeight(1);
     }
     else if (obstacle->getObstacleType() == ObstacleType::GRID && playerState != PlayerState::CROUCH) {
-        lives.pop();
+        lives.pop_front();
         immortal = true;
     }
 }

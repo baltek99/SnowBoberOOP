@@ -6,6 +6,10 @@ Visual EntityWithTexture::getVisual() const {
     return visual;
 }
 
+Visual & EntityWithTexture::getVisual() {
+    return visual;
+}
+
 void EntityWithTexture::setVisual(const Visual &visual_) {
     visual = visual_;
 }
@@ -15,7 +19,10 @@ int EntityWithTexture::getZIndex() const {
 }
 
 void EntityWithTexture::render(sf::RenderWindow & window) {
-    visual.getSprite().setPosition(position.getX(), position.getY());
-    window.draw(visual.getSprite());
+    sf::Sprite& sprite = visual.getSprite();
+    sprite.setPosition(position.getX(), position.getY());
+    //printf("Pozycja sprite : %f %f \n", visual.getSprite().getPosition().x, visual.getSprite().getPosition().y);
+
+    window.draw(sprite);
 }
 

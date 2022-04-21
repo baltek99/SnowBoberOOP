@@ -68,7 +68,7 @@ public :
 
     void detectCollisions();
 
-    CollisionType intersects(Player player, Obstacle* obstacle);
+    CollisionType intersects(Player player, std::unique_ptr<Obstacle>& obstacle);
 
     bool touch(const sf::IntRect &s, const sf::IntRect &r);
 

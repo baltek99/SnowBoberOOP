@@ -1,5 +1,4 @@
 #include "Rail.h"
-#include "ConstValues.h"
 
 Rail::Rail(const Position &position_, int speed_) :
 	Obstacle(position_, Visual(TexturesManager::rail, ConstValues::RAIL_WIDTH, ConstValues::RAIL_HEIGHT), speed_, ObstacleType::RAIL) {

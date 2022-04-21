@@ -5,6 +5,7 @@
 #include "ICollidable.h"
 #include "CollisionInfo.h"
 #include "ObstacleType.h"
+#include "ConstValues.h"
 
 class Obstacle : public EntityWithTexture, public IMovable, public ICollidable {
 protected:

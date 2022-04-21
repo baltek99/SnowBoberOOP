@@ -2,7 +2,7 @@
 
 #include "Obstacle.h"
 
-class ScorePoint : Obstacle {
+class ScorePoint : public Obstacle {
 public :
     ScorePoint(const Position &position_, int speed_);
 

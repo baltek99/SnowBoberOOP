@@ -16,6 +16,8 @@ public:
 
     Visual(std::string texturePath, float scaleX_, float scaleY_, float rotation_);
 
+    sf::Sprite &getSprite();
+
     sf::Sprite getSprite() const;
 
     void setTexture(const sf::Texture &texture_);

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <queue>
 #include "EntityWithTexture.h"
 #include "ICollidable.h"
 #include "IMovable.h"
@@ -8,12 +7,13 @@
 #include "CollisionInfo.h"
 #include "PlayerState.h"
 #include "Life.h"
+#include <deque>
 
 class Player : public EntityWithTexture, public IPlayerActions, public ICollidable, public IMovable {
 private :
     int score;
     std::string name;
-    std::queue<Life> lives;
+    std::deque<Life> lives;
     bool immortal = false;
     PlayerState playerState;
     CollisionInfo collisionInfo;
@@ -45,7 +45,7 @@ public :
 
     PlayerState getPlayerState() const;
 
-    std::queue<Life> getLives() const;
+    std::deque<Life> getLives() const;
     
     size_t getNumberOfLives() const;
 

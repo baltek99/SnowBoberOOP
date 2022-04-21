@@ -1,5 +1,4 @@
 #include "Grid.h"
-#include "ConstValues.h"
 
 Grid::Grid(const Position &position_, int speed_) :
 	Obstacle(position_, Visual(TexturesManager::grid, ConstValues::GRID_WIDTH, ConstValues::GRID_HEIGHT), speed_, ObstacleType::GRID) {

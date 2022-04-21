@@ -15,6 +15,8 @@ public:
 
     Visual getVisual() const;
 
+    Visual & getVisual();
+
     void setVisual(const Visual &visual_);
 
     int getZIndex() const;

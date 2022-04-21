@@ -2,20 +2,20 @@
 
 Position::Position() : x(0), y(0) {}
 
-Position::Position(int x_, int y_) : x(x_), y(y_) {}
+Position::Position(float x_, float y_) : x(x_), y(y_) {}
 
-int Position::getX() const {
+float Position::getX() const {
 	return x;
 }
 
-void Position::setX(int x_) {
+void Position::setX(float x_) {
 	x = x_;
 }
 
-int Position::getY() const {
+float Position::getY() const {
 	return y;
 }
 
-void Position::setY(int y_) {
+void Position::setY(float y_) {
 	y = y_;
 }
