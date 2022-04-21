@@ -1,10 +1,8 @@
-﻿  Player.cpp
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Player.cpp(93,33): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Player.cpp(107,33): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Player.cpp(137,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  EntityWithTexture.cpp
+  Visual.cpp
   Generating code
-  1 of 495 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  17 of 494 functions ( 3.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SnowBoberOOP.vcxproj -> C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\x64\Release\SnowBoberOOP.exe

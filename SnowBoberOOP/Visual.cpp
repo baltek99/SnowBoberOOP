@@ -1,26 +1,32 @@
 #include "Visual.h"
 
-Visual::Visual(std::string texturePath, float scaleX_, float scaleY_) {
+/*Visual::Visual(std::string texturePath, float scaleX_, float scaleY_) {
     sf::Texture texture;
     texture.loadFromFile(texturePath);
-
     sprite.setTexture(texture);
+    //sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
+
     sprite.setScale(scaleX_, scaleY_);
-}
+}*/
 
 Visual::Visual(const sf::Texture& texture, float scaleX_, float scaleY_) {
     sprite.setTexture(texture);
+    sprite.setOrigin(sprite.getGlobalBounds().width / 2.f, sprite.getGlobalBounds().height / 2.f);
+
     sprite.setScale(scaleX_, scaleY_);
 }
 
+/*
 Visual::Visual(std::string texturePath, float scaleX_, float scaleY_, float rotation_) {
     sf::Texture texture;
     texture.loadFromFile(texturePath);
 
     sprite.setTexture(texture);
+    //sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
+
     sprite.setScale(scaleX_, scaleY_);
     sprite.setRotation(rotation_);
-}
+}*/
 
 sf::Sprite & Visual::getSprite() {
     return sprite;

@@ -9,7 +9,6 @@
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
     view = sf::View(sf::Vector2f(window.getSize().x/2.f, window.getSize().y/2.f), sf::Vector2f(ConstValues::V_WIDTH, ConstValues::V_HEIGHT));
-
     view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 
     gameFrame = 0;
@@ -39,6 +38,19 @@ void Game::gameLoop() {
             case sf::Event::Resized:
                 resizeView(window, view);
                 break;
+            
+            case sf::Event::KeyPressed:
+                switch (event.key.code)
+                {
+                case sf::Keyboard::Space:
+                    player.jump(gameFrame);break;
+                case sf::Keyboard::LControl:
+                    player.crouch();break;
+                case sf::Keyboard::Right:
+                    player.moveRight();break;
+                case sf::Keyboard::Left:
+                    player.moveLeft();break;
+                }break;
             }
         }
 
@@ -72,7 +84,7 @@ void Game::gameLoop() {
         }
         else if (gameState == GameState::GAMEPLAY) {
             
-            detectInput(gameFrame);
+            //detectInput(gameFrame);
             move(gameFrame);
             /*
             generateObstacle();

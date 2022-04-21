@@ -20,9 +20,15 @@ int EntityWithTexture::getZIndex() const {
 
 void EntityWithTexture::render(sf::RenderWindow & window) {
     sf::Sprite& sprite = visual.getSprite();
-    sprite.setPosition(position.getX(), position.getY());
+
+    
+   sprite.setPosition(position.getX() + sprite.getScale().x * sprite.getLocalBounds().width / 2,
+       position.getY() + sprite.getScale().y * sprite.getLocalBounds().height / 2);
+
     //printf("Pozycja sprite : %f %f \n", visual.getSprite().getPosition().x, visual.getSprite().getPosition().y);
 
     window.draw(sprite);
+    
+    
 }
 

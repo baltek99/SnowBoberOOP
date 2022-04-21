@@ -114,7 +114,7 @@ void Player::crouch() {
     if (playerState == PlayerState::IDLE) {
         playerState = PlayerState::CROUCH;
 
-        position.setY(100);
+        position.setY(ConstValues::BOBER_CROUCH_POSITION_Y);
         setVisual(Visual(TexturesManager::boberCrouch, ConstValues::BOBER_CROUCH_WIDTH, ConstValues::BOBER_CROUCH_HEIGHT));
     }
     else if (playerState == PlayerState::CROUCH) {
