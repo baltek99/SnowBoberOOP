@@ -2,7 +2,7 @@
 
 #include "Obstacle.h"
 
-class GridStick : Obstacle {
+class GridStick : public Obstacle {
 public :
     GridStick(const Position &position_, int speed_);
 

@@ -2,7 +2,7 @@
 
 #include "Obstacle.h"
 
-class Grid : Obstacle
+class Grid : public Obstacle
 {
 public :
     Grid(const Position &position_, int speed_);

@@ -23,7 +23,7 @@ private:
      GameState gameState;
 
      Player player;
-     std::vector<Obstacle> obstacles;
+     std::vector<std::unique_ptr<Obstacle>> obstacles;
      std::vector<ScorePoint> scorePoints;
      std::vector<Background> backgrounds;
 
@@ -68,7 +68,7 @@ public :
 
     void detectCollisions();
 
-    CollisionType intersects(Player player, std::unique_ptr<Obstacle>& obstacle);
+    CollisionType intersects(Player player, Obstacle* obstacle);
 
     bool touch(const sf::IntRect &s, const sf::IntRect &r);
 

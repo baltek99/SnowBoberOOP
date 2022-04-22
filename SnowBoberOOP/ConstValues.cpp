@@ -25,16 +25,20 @@ const float ConstValues::BOBER_IN_JUMP_HEIGHT = 0.8f;
 const float ConstValues::BOBER_CROUCH_WIDTH = 0.8f;
 const float ConstValues::BOBER_CROUCH_HEIGHT = 0.8f;
 
-const float ConstValues::BOX_WIDTH = 70.f;
-const float ConstValues::BOX_HEIGHT = 70.f;
-const float ConstValues::RAIL_WIDTH = 300.f;
-const float ConstValues::RAIL_HEIGHT = 70.f;
-const float ConstValues::GRID_WIDTH = 180.f;
-const float ConstValues::GRID_HEIGHT = 280.f;
+const float ConstValues::BOX_WIDTH = 0.6f;
+const float ConstValues::BOX_HEIGHT = 0.6f;
+const float ConstValues::RAIL_WIDTH = 0.7f;
+const float ConstValues::RAIL_HEIGHT = 1.05f;
+const float ConstValues::GRID_WIDTH = 0.6f;
+const float ConstValues::GRID_HEIGHT = 0.6f;
 const float ConstValues::SCORE_WIDTH = 1.f;
 const float ConstValues::SCORE_HEIGHT = V_HEIGHT;
 const float ConstValues::HEART_WIDTH = 0.2f;
 const float ConstValues::HEART_HEIGHT = 0.2f;
+
+const float ConstValues::RAIL_POSITION_Y = 360.f;
+const float ConstValues::GRID_POSITION_Y = 200.f;
+const float ConstValues::BOX_POSITION_Y = 380.f;
 
 const float ConstValues::HEART_POSITION_Y = 50.f;
 const float ConstValues::HEART_POSITION_X_1 = V_WIDTH - 250.f;

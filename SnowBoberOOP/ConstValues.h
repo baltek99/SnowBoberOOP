@@ -38,6 +38,10 @@ public:
     static const float HEART_WIDTH;
     static const float HEART_HEIGHT;
 
+    static const float RAIL_POSITION_Y;
+    static const float GRID_POSITION_Y;
+    static const float BOX_POSITION_Y;
+
     static const float HEART_POSITION_Y;
     static const float HEART_POSITION_X_1;
     static const float HEART_POSITION_X_2;

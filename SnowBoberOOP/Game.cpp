@@ -5,12 +5,17 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <random>
+#include "Grid.h"
+#include "GridStick.h"
+#include "Box.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
     view = sf::View(sf::Vector2f(window.getSize().x/2.f, window.getSize().y/2.f), sf::Vector2f(ConstValues::V_WIDTH, ConstValues::V_HEIGHT));
     view.setViewport(sf::FloatRect(0.f, 0.f, 1.f, 1.f));
 
+    srand(time(0));
     gameFrame = 0;
     obstacleFrame = 0;
     obstacleSpawnRate = 300;
@@ -86,10 +91,10 @@ void Game::gameLoop() {
             
             //detectInput(gameFrame);
             move(gameFrame);
-            /*
+            
             generateObstacle();
 
-            detectCollisions();
+            //detectCollisions();
 
             clearObstacles();
 
@@ -97,7 +102,7 @@ void Game::gameLoop() {
                 gameState = GameState::GAME_OVER;
                 createGameOverWorld(player.getScore());
             }
-            */
+            
             drawGame();
         }
         else if (gameState == GameState::GAME_OVER) {
@@ -210,16 +215,9 @@ void Game::drawGame() {
         background.render(window);
     }
 
-    /*for (Obstacle obstacle : obstacles) {
-        if (obstacle.getZIndex() == 0) {
-            obstacle.render(window);
-        }
-    }*/
-
     for (unsigned int i = 0; i < obstacles.size(); i++) {
-        std::unique_ptr<Obstacle> obs_p(&obstacles.at(i));
-        if (obs_p->getZIndex() == 0) {
-            obs_p->render(window);
+        if (obstacles.at(i)->getZIndex() == 0) {
+            obstacles.at(i)->render(window);
         }
     }
 
@@ -230,9 +228,8 @@ void Game::drawGame() {
     }
 
     for (unsigned int i = 0; i < obstacles.size(); i++) {
-        std::unique_ptr<Obstacle> obs_p(&obstacles.at(i));
-        if (obs_p->getZIndex() == 1) {
-            obs_p->render(window);
+        if (obstacles.at(i)->getZIndex() == 1) {
+            obstacles.at(i)->render(window);
         }
     }
 }
@@ -246,7 +243,7 @@ void Game::move(long gameFrame) {
     moveEntity(player, gameFrame);
 
     for (unsigned int i = 0; i < obstacles.size(); i++) {
-        moveEntity(obstacles.at(i), gameFrame);
+        moveEntity(*obstacles.at(i), gameFrame);
     }
 
     for (ScorePoint& scorePoint : scorePoints) {
@@ -266,31 +263,31 @@ void Game::moveEntity(IMovable& entity, long gameFrame) {
 void Game::detectCollisions() {
     if (!player.isImmortal()) {
         for (unsigned int i = 0; i < obstacles.size(); i++) {
-            std::unique_ptr<Obstacle> obs_p(&obstacles.at(i));
+            Obstacle* obs_p = obstacles.at(i).get();
             CollisionType type = intersects(player, obs_p);
             if (type != CollisionType::NONE) {
                 bool collisionFlag = true;
-                if (obs_p->getObstacleType() == ObstacleType::RAIL) {
-                    Rail* rail = (Rail*)(obs_p.get());
+                if (obstacles.at(i)->getObstacleType() == ObstacleType::RAIL) {
+                    Rail* rail = (Rail*)(obs_p);
                     collisionFlag = getOffRail(*rail);
                 }
 
-                if (collisionFlag) player.collide(obs_p.get());
+                if (collisionFlag) player.collide(obs_p);
             }
         }
     }
 
-    for (unsigned int i = 0; i < scorePoints.size(); i++) {
-        std::unique_ptr<Obstacle> obs_p(&scorePoints.at(i));
+    /*for (unsigned int i = 0; i < scorePoints.size(); i++) {
+        Obstacle* obs_p = scorePoints.at(i);
         CollisionType type = intersects(player, obs_p);
         if (type != CollisionType::NONE) {
             player.collide(obs_p.get());
             scorePoints.erase(scorePoints.begin() + i);
         }
-    }
+    }*/
 }
 
-CollisionType Game::intersects(Player player, std::unique_ptr<Obstacle> & obstacle) { 
+CollisionType Game::intersects(Player player, Obstacle* obstacle) { 
 
     CollisionInfo playerInfo = player.getCollisionInfo();
     CollisionInfo obstacleInfo = obstacle->getCollisionInfo();
@@ -322,13 +319,50 @@ bool Game::touch(const sf::IntRect& s, const sf::IntRect& r) {
 
 bool Game::getOffRail(const Rail& rail) { return false; }
 
-void Game::generateObstacle() {}
+void Game::generateObstacle() {
+    obstacleFrame++;
+    if (obstacleFrame % ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT == 0) {
+        obstacleSpawnRate = obstacleSpawnRate - obstacleSpawnRate / -currentObstacleSpeed;
+        obstacleFrame = 1;
+    }
 
-void Game::createGrid() {}
+    if (obstacleFrame % obstacleSpawnRate == 0) {
+        int x = rand() % 1000;
 
-void Game::createRail() {}
+        if (x < 333) {
+            createBox();
+            createScorePoint(270);
+        }
+        else if (x < 666) {
+            createGrid();
+            createScorePoint(500);
+        }
+        else {
+            createRail();
+            createScorePoint(500);
+        }
+    }
+}
 
-void Game::createBox() {}
+void Game::createGrid() {
+    //Grid grid = Grid(Position(ConstValues::V_WIDTH, 260), currentObstacleSpeed);
+    //GridStick gridStick = GridStick(Position(ConstValues::V_WIDTH, 260), currentObstacleSpeed);
+    //obstacles.push_back(static_cast<Obstacle*>(&grid));
+    //obstacles.push_back(static_cast<Obstacle*>(&gridStick));
+
+    obstacles.emplace_back(std::make_unique<Grid>(Position(ConstValues::V_WIDTH, ConstValues::GRID_POSITION_Y), currentObstacleSpeed));
+    obstacles.emplace_back(std::make_unique<GridStick>(Position(ConstValues::V_WIDTH, ConstValues::GRID_POSITION_Y), currentObstacleSpeed));
+}
+
+void Game::createRail() {
+    //Rail rail = Rail(Position(ConstValues::V_WIDTH, 310), currentObstacleSpeed);
+    //obstacles.push_back(rail);
+    obstacles.emplace_back(std::make_unique<Rail>(Position(ConstValues::V_WIDTH, ConstValues::RAIL_POSITION_Y), currentObstacleSpeed));
+}
+
+void Game::createBox() {
+    obstacles.emplace_back(std::make_unique<Box>(Position(ConstValues::V_WIDTH, ConstValues::BOX_POSITION_Y), currentObstacleSpeed));
+}
 
 void Game::createScorePoint(int extra) {}
 
