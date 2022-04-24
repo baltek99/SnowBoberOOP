@@ -41,6 +41,7 @@ public:
     static const float RAIL_POSITION_Y;
     static const float GRID_POSITION_Y;
     static const float BOX_POSITION_Y;
+    static const float SCORE_POINT_POSITION_Y;
 
     static const float HEART_POSITION_Y;
     static const float HEART_POSITION_X_1;

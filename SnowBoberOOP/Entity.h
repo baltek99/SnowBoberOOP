@@ -15,6 +15,8 @@ public:
 	Entity(const Position &pos);
 
 	Position getPosition() const;
+	
+	Position& getPosition();
 
 	virtual ~Entity();
 };

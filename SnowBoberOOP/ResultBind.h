@@ -4,11 +4,13 @@
 
 class ResultBind {
 
-private :
-	const std::string name;
-	const int score;
+private:
+	std::string name;
+	int score;
 
-public :
+public:
+	ResultBind();
+
 	ResultBind(const std::string name_, int score_);
 
 	std::string getName() const;
@@ -18,5 +20,8 @@ public :
 	std::string toString() const;
 
 	int compareTo(const ResultBind& result) const;
-};
 
+	friend std::ostream& operator << (std::ostream& out, const ResultBind& obj);
+
+	friend std::istream& operator >> (std::istream& in, ResultBind& obj);
+};

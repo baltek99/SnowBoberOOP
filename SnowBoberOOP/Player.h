@@ -37,6 +37,8 @@ public :
 
     CollisionInfo getCollisionInfo() const;
 
+    CollisionInfo &getCollisionInfo();
+
     bool isImmortal() const;
 
     void setImmortal(bool immortal_);
@@ -70,5 +72,7 @@ public :
     void collide(ICollidable * collidable) override;
 
     void render(sf::RenderWindow& window) override;
+
+    void updateImmortal();
 };
 

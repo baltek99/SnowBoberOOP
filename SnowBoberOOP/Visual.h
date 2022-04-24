@@ -1,6 +1,4 @@
 #pragma once
-#ifndef VISUAL_H
-#define VISUAL_H
 
 #include <SFML/Graphics.hpp>
 
@@ -30,5 +28,3 @@ public:
 
     void setRotation(float rotation_);
 };
-#endif // !VISUAL_H
-

@@ -15,5 +15,11 @@ public :
 	std::vector<ResultBind> getScores() const;
 
 	void addResult(const std::string name, int score);
+
+	void bubbleSort(std::vector<ResultBind>& arr);
+
+	void readHighScores();
+
+	void writeHighScores();
 };
 

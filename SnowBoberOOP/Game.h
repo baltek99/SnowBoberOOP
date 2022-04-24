@@ -16,6 +16,8 @@ class Game
 public:
      sf::RenderWindow window;
      sf::View view;
+     sf::Text text;
+     sf::Font font;
 
 private:
      TexturesManager texturesManager;
@@ -42,6 +44,10 @@ public :
 
 	~Game();
 
+    void updateWorld();
+
+    void renderWorld();
+
     void gameLoop();
 
     void createMainMenuWorld();
@@ -67,6 +73,8 @@ public :
     void moveEntity(IMovable &entity, long gameFrame);
 
     void detectCollisions();
+
+    bool intersects(const sf::FloatRect& s, float rotation, const sf::FloatRect& r);
 
     CollisionType intersects(Player player, Obstacle* obstacle);
 

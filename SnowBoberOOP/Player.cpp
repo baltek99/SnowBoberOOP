@@ -18,7 +18,7 @@ void Player::initVariables() {
     jumpHeight = 120;
     jumpDuration = 110;
     flipRotationSpeed = 3.4f;
-    ollieUpRotationSpeed = 1.1f;
+    ollieUpRotationSpeed = 1.2f;
     ollieDownRotationSpeed = 0.4f;
     initialImmortalDurationVal = 150;
     immortalDuration = 150;
@@ -34,6 +34,10 @@ void Player::initVariables() {
 }
 
 CollisionInfo Player::getCollisionInfo() const {
+    return collisionInfo;
+}
+
+CollisionInfo &Player::getCollisionInfo() {
     return collisionInfo;
 }
 
@@ -106,7 +110,6 @@ void Player::jump(long gameFrame) {
         }
         jumpFrom = ConstValues::JUMP_FROM_GROUND_Y;
         startJumpFrame = gameFrame;
-        
     }
 }
 
@@ -159,7 +162,7 @@ void Player::move(long gameFrame) {
 }
 
 void Player::speedUp(long gameFrame) {
-    if (gameFrame == ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
+    if (gameFrame == 2*ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
         jumpHeight = 110;
         jumpDuration = 80;
         flipRotationSpeed = 4.5f;
@@ -195,7 +198,7 @@ void Player::collide(ICollidable* collidable) {
         playerState = PlayerState::SLIDING;
         setVisual(Visual(TexturesManager::boberSlide, ConstValues::BOBER_ON_RAIL_WIDTH, ConstValues::BOBER_ON_RAIL_HEIGHT));
         Rail* rail = static_cast<Rail*>(obstacle);
-        rail->setRailCollisionHeight(1);
+        rail->setRailCollisionHeight(0);
     }
     else if (obstacle->getObstacleType() == ObstacleType::GRID && playerState != PlayerState::CROUCH) {
         lives.pop_front();
@@ -208,13 +211,18 @@ void Player::render(sf::RenderWindow& window) {
         if (immortalDuration % 40 < 20) {
             EntityWithTexture::render(window);
         }
+    }
+    else {
+        EntityWithTexture::render(window);
+    }
+}
+
+void Player::updateImmortal() {
+    if (immortal && immortalDuration > 0) {
         immortalDuration--;
     }
     else if (immortal) {
         immortal = false;
         immortalDuration = initialImmortalDurationVal;
-    }
-    else {
-        EntityWithTexture::render(window);
     }
 }

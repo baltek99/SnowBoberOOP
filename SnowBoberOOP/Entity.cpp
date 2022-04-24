@@ -12,6 +12,10 @@ Position Entity::getPosition() const {
 	return position;
 }
 
+Position& Entity::getPosition() {
+	return position;
+}
+
 Entity::~Entity()
 {
 }
