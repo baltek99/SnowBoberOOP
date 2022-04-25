@@ -24,11 +24,12 @@ Game::Game() {
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
 
-    highScores.readHighScores();
+    textBox = TextBox(25, sf::Color::Red, true);
+    textBox.setFont(font);
+    textBox.setPosition({300, 450});
+    //textBox.setLimit(30);
 
-    //for (int i = 0; i < highScores.getScores().size(); i++) {
-    //    printf("%s \n", highScores.getScores().at(i).toString());
-    //}
+    highScores.readHighScores();
 
     srand(time(0));
     gameFrame = 0;
@@ -60,7 +61,10 @@ void Game::gameLoop() {
             case sf::Event::Resized:
                 resizeView(window, view);
                 break;
-            
+            case sf::Event::TextEntered:
+                if (gameState == GameState::MAIN_MENU) {
+                    textBox.typedOn(event);
+                }
             case sf::Event::KeyPressed:
                 if (gameState == GameState::GAMEPLAY) {
                     switch (event.key.code)
@@ -71,6 +75,18 @@ void Game::gameLoop() {
                         player.crouch();break;
 
                     }break;
+                }
+                else if (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER) {
+                    if (event.key.code == sf::Keyboard::Tab) {
+                        gameState = GameState::HIGH_SCORES;
+                        createHighScoreWorld();
+                    }
+                }
+                else if (gameState == GameState::HIGH_SCORES) {
+                    if (event.key.code == sf::Keyboard::Tab) {
+                        gameState = GameState::MAIN_MENU;
+                        createMainMenuWorld();
+                    }
                 }
             }
         }
@@ -92,6 +108,7 @@ void Game::gameLoop() {
 
         renderWorld();
 
+
         window.display();
 
 
@@ -102,20 +119,19 @@ void Game::gameLoop() {
 
 void Game::updateWorld() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H) && (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER)) {
-        gameState = GameState::HIGH_SCORES;
-        createHighScoreWorld();
+        //gameState = GameState::HIGH_SCORES;
+        //createHighScoreWorld();
     }
     else if (gameState == GameState::HIGH_SCORES) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)
-            || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H)) {
-            gameState = GameState::MAIN_MENU;
-            createMainMenuWorld();
-        }
+        //if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)
+        //    || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Tab)) {
+        //    gameState = GameState::MAIN_MENU;
+        //    createMainMenuWorld();
+        //}
     }
     else if (gameState == GameState::MAIN_MENU) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-            //Gdx.input.getTextInput(this, "Podaj swój nick", "", "Player");
-            playerName = "Bartek";
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
+            playerName = textBox.getText();
         }
         if (playerName != "") {
             gameState = GameState::GAMEPLAY;
@@ -198,18 +214,6 @@ void Game::createGameOverWorld(int score) {
 
     highScores.writeHighScores();
 
-    /*
-    TODO highscores writing
-    try {
-        FileWriter writer = new FileWriter(highScoresPath);
-        gson.toJson(highScores, writer);
-        writer.flush();
-        writer.close();
-    }
-    catch (IOException e) {
-        System.out.println("HighScores object serialization failed!");
-        e.printStackTrace();
-    }*/
     sf::Vector2u size = texturesManager.background.getSize();
     float skalaX = ConstValues::V_WIDTH / float(size.x);
     float skalaY = ConstValues::V_HEIGHT / float(size.y);
@@ -254,6 +258,8 @@ void Game::drawStart() {
     for (Background& background : backgrounds) {
         background.render(window);
     }
+
+    textBox.draw(window);
 }
 
 void Game::drawEnd() {

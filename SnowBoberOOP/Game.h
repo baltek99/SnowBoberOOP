@@ -10,6 +10,7 @@
 #include "HighScores.h"
 #include "Rail.h"
 #include "TexturesManager.h"
+#include "TextBox.h"
 
 class Game
 {
@@ -18,6 +19,7 @@ public:
      sf::View view;
      sf::Text text;
      sf::Font font;
+     TextBox textBox;
 
 private:
      TexturesManager texturesManager;

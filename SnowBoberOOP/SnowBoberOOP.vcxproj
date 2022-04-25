@@ -170,6 +170,7 @@
     <ClCompile Include="ResultBind.cpp" />
     <ClCompile Include="ScorePoint.cpp" />
     <ClCompile Include="SnowBoberOOP.cpp" />
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="TexturesManager.cpp" />
     <ClCompile Include="Util.cpp" />
     <ClCompile Include="Visual.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="Rail.h" />
     <ClInclude Include="ResultBind.h" />
     <ClInclude Include="ScorePoint.h" />
+    <ClInclude Include="TextBox.h" />
     <ClInclude Include="TexturesManager.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="Visual.h" />
