@@ -33,7 +33,6 @@ private:
 
      HighScores highScores;
      std::string highScoresPath = "highscores.json";
-     //Gson gson;
 
      long gameFrame;
      int obstacleFrame;

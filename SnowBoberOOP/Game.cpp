@@ -27,7 +27,6 @@ Game::Game() {
     textBox = TextBox(25, sf::Color::Red, true);
     textBox.setFont(font);
     textBox.setPosition({300, 450});
-    //textBox.setLimit(30);
 
     highScores.readHighScores();
 
@@ -110,26 +109,12 @@ void Game::gameLoop() {
 
 
         window.display();
-
-
-        //std::this_thread::sleep_for(std::chrono::milliseconds(timestep));
     }
 }
 
 
 void Game::updateWorld() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H) && (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER)) {
-        //gameState = GameState::HIGH_SCORES;
-        //createHighScoreWorld();
-    }
-    else if (gameState == GameState::HIGH_SCORES) {
-        //if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)
-        //    || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Tab)) {
-        //    gameState = GameState::MAIN_MENU;
-        //    createMainMenuWorld();
-        //}
-    }
-    else if (gameState == GameState::MAIN_MENU) {
+   if (gameState == GameState::MAIN_MENU) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
             playerName = textBox.getText();
         }
@@ -158,7 +143,6 @@ void Game::updateWorld() {
     }
     else if (gameState == GameState::GAME_OVER) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-            //                playerName = null;
             gameState = GameState::GAMEPLAY;
             createGameWorld(playerName);
         }
@@ -392,7 +376,6 @@ CollisionType Game::intersects(Player player, Obstacle* obstacle) {
     CollisionInfo playerInfo = player.getCollisionInfo();
     CollisionInfo obstacleInfo = obstacle->getCollisionInfo();
     if (obstacle->getObstacleType() == ObstacleType::RAIL && obstacleInfo.rectangle.height < 1.f) {
-        //printf("NONE &i", obstacleInfo.rectangle.height);
         return CollisionType::NONE;
     }
     //playerInfo.rectangle.left = player.getPosition().getX();
