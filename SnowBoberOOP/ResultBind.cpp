@@ -21,6 +21,10 @@ std::string ResultBind::toString() const {
 	return name + " : " + std::to_string(score);
 }
 
+bool ResultBind::operator < (ResultBind& r) {
+	return this->score < r.score;
+}
+
 int ResultBind::compareTo(const ResultBind& result) const {
 	return score > result.getScore();
 }

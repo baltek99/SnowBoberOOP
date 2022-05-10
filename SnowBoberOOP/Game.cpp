@@ -104,9 +104,7 @@ void Game::gameLoop() {
             ms = current_ms;
         }
 
-
         renderWorld();
-
 
         window.display();
     }
@@ -161,10 +159,10 @@ void Game::renderWorld() {
 void Game::createMainMenuWorld() {
     resetWorld();
     sf::Vector2u size = texturesManager.start.getSize();
-    float skalaX = ConstValues::V_WIDTH / float(size.x);
-    float skalaY = ConstValues::V_HEIGHT / float(size.y);
+    float scaleX = ConstValues::V_WIDTH / float(size.x);
+    float scaleY = ConstValues::V_HEIGHT / float(size.y);
 
-    Background background = Background(Position(0, 0), Visual(texturesManager.start, skalaX, skalaY), 0);
+    Background background = Background(Position(0, 0), Visual(texturesManager.start, scaleX, scaleY), 0);
     backgrounds.push_back(background);
     playerName = "";
 }
@@ -176,11 +174,11 @@ void Game::createGameWorld(std::string playerName_) {
     text.setFillColor(sf::Color::Black);
 
     sf::Vector2u size = texturesManager.background.getSize();
-    float skalaX = ConstValues::V_WIDTH / float(size.x);
-    float skalaY = ConstValues::V_HEIGHT / float(size.y);
+    float scaleX = ConstValues::V_WIDTH / float(size.x);
+    float scaleY = ConstValues::V_HEIGHT / float(size.y);
 
-    Background background1 = Background(Position(0, 0), Visual(texturesManager.background, skalaX, skalaY), -2);
-    Background background2 = Background(Position(ConstValues::V_WIDTH, 0), Visual(texturesManager.background, skalaX, skalaY), -2);
+    Background background1 = Background(Position(0, 0), Visual(texturesManager.background, scaleX, scaleY), -2);
+    Background background2 = Background(Position(ConstValues::V_WIDTH, 0), Visual(texturesManager.background, scaleX, scaleY), -2);
     backgrounds.push_back(background1);
     backgrounds.push_back(background2);
     player = Player(Position(ConstValues::BOBER_DEFAULT_POSITION_X, ConstValues::BOBER_DEFAULT_POSITION_Y),
@@ -199,10 +197,10 @@ void Game::createGameOverWorld(int score) {
     highScores.writeHighScores();
 
     sf::Vector2u size = texturesManager.background.getSize();
-    float skalaX = ConstValues::V_WIDTH / float(size.x);
-    float skalaY = ConstValues::V_HEIGHT / float(size.y);
+    float scaleX = ConstValues::V_WIDTH / float(size.x);
+    float scaleY = ConstValues::V_HEIGHT / float(size.y);
 
-    Background background = Background(Position(0, 0), Visual(texturesManager.gameOver, skalaX, skalaY), 0);
+    Background background = Background(Position(0, 0), Visual(texturesManager.gameOver, scaleX, scaleY), 0);
     backgrounds.push_back(background);
 }
 
@@ -385,12 +383,13 @@ CollisionType Game::intersects(Player player, Obstacle* obstacle) {
     
     sf::RectangleShape rsh;
     rsh.setTextureRect(sf::IntRect(player.getVisual().getSprite().getGlobalBounds()));
-    rsh.setOutlineColor(sf::Color::Red);
     rsh.setSize(sf::Vector2f(player.getVisual().getSprite().getLocalBounds().width * player.getVisual().getScaleX(),
         player.getVisual().getSprite().getLocalBounds().height * player.getVisual().getScaleY()));
     rsh.setOrigin(rsh.getSize().x / 2, rsh.getSize().y / 2);
     rsh.setRotation(player.getVisual().getRotation());
     rsh.setPosition(player.getPosition().getX() + rsh.getSize().x / 2, player.getPosition().getY() + rsh.getSize().y / 2);
+
+    //window.draw(rsh);
 
     playerInfo.rectangle = sf::IntRect(rsh.getGlobalBounds());
 
@@ -417,57 +416,6 @@ CollisionType Game::intersects(Player player, Obstacle* obstacle) {
     }
 
     return CollisionType::NONE;
-}
-
-bool Game::intersects(const sf::FloatRect& s, float rotation, const sf::FloatRect& r) {
-    /*sf::FloatRect fr1 = sf::FloatRect(s);
-    sf::FloatRect fr2 = sf::FloatRect(r);
-
-    float matrix[3][3]{
-        {cos(rotation), -sin(rotation), 0},
-        {sin(rotation), cos(rotation), 0},
-        {0, 0, 1}
-    }; 
-    
-
-    float p1[3]{ s.left, s.top, 1 };
-    float p2[3]{ s.left + s.width, s.top, 1 };
-
-    float wektor[3][1] { p2[0] - p1[0], p2[1] - p1[1], 0 };
-
-    float result[3][3]{ {0 ,0 ,0} , {0,0,0} , {0,0,0} };
-
-    float matrix[2][2]{
-        {cos(rotation), -sin(rotation)},
-        {sin(rotation), cos(rotation)}
-    };
-    float p1[2]{ s.left + s.width/2, s.top };
-    float p2[2]{ s.left + s.width, s.top };
-
-    float wektor[2][1]{ p2[0] - p1[0], p2[1] - p1[1] };
-
-    float result[2][2]{ {0 ,0 } , {0,0} };
-    int r1 = 2;
-    int c2 = 3;
-    int c1 = 1;
-
-    for (int i = 0; i < r1; ++i)
-        for (int j = 0; j < c2; ++j)
-            for (int k = 0; k < c1; ++k)
-            {
-                result[i][j] += wektor[i][k] * matrix[k][j];
-            }
-
-    printf("Pkt1 %f, %f \n", p1[0], p1[1]);
-    printf("Pkt2 %f, %f \n", p2[0], p2[1]);
-    printf("Macierz \n");
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            printf("%f ", result[i][j]);
-        }
-        printf("\n");
-    }*/
-    return true;
 }
 
 bool Game::touch(const sf::IntRect& s, const sf::IntRect& r) {
@@ -573,5 +521,4 @@ void Game::resizeView(sf::RenderWindow& window_, sf::View& view_) {
 
         view_.setViewport(sf::FloatRect(0.f, (heightDiff / 4.f) / wy, 1.f, 1.f - (heightDiff / 2.f) / wy));
     }
-
 }

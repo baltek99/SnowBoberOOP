@@ -72,6 +72,8 @@ void TextBox::typedOn(sf::Event input) {
 }
 
 void TextBox::inputLogic(int charTyped) {
+	if (charTyped == TAB_KEY)
+		return;
 	if (charTyped != DELETE_KEY && charTyped != ENTER_KEY && charTyped != ESCAPE_KEY) {
 		text << static_cast<char>(charTyped);
 	}

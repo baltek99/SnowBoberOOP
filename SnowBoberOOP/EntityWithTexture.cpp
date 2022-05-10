@@ -27,7 +27,7 @@ void EntityWithTexture::render(sf::RenderWindow & window) {
 
     //printf("Pozycja sprite : %f %f \n", visual.getSprite().getPosition().x, visual.getSprite().getPosition().y);
 
-    window.draw(sprite);
+   // window.draw(sprite);
     
     
 }

@@ -1,5 +1,6 @@
 #include "HighScores.h"
 #include <fstream>
+#include <algorithm>
 
 HighScores::HighScores() : maxNumberOfResults(10), scores(std::vector<ResultBind>()) {}
 
@@ -11,7 +12,9 @@ void HighScores::addResult(const std::string name, int score) {
 	scores.push_back(ResultBind(name, score));
 
 	//sort
-	bubbleSort(scores);
+	//bubbleSort(scores);
+
+	std::sort(scores.begin(), scores.end());
 
 	if (scores.size() > maxNumberOfResults) {
 		scores.erase(scores.begin());
@@ -45,7 +48,7 @@ void HighScores::readHighScores() {
 	}
 	in2.close();
 
-	bubbleSort(scores);
+	std::sort(scores.begin(), scores.end());
 }
 
 void HighScores::writeHighScores() {

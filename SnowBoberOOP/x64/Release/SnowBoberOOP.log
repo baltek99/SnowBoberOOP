@@ -1,27 +1,18 @@
 ﻿  Game.cpp
 C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(33,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(228,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(230,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(397,63): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(226,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(228,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(394,63): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(398,65): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(395,65): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(399,87): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-          and
-          [
-              T=int
-          ]
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(400,88): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(396,87): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=float
@@ -30,11 +21,20 @@ C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(400,88): warni
           [
               T=int
           ]
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(483,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(484,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(397,88): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(480,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(481,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating code
-  2 of 943 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  7 of 965 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    13 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SnowBoberOOP.vcxproj -> C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\x64\Release\SnowBoberOOP.exe

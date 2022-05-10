@@ -13,6 +13,8 @@ public:
 
 	ResultBind(const std::string name_, int score_);
 
+	bool operator < (ResultBind& r);
+
 	std::string getName() const;
 
 	int getScore() const;
