@@ -97,3 +97,9 @@ void TextBox::deleteLastChar() {
 
 	textBox.setString(text.str());
 }
+
+void TextBox::clear() {
+	text.str("");
+	text.clear();
+	textBox.setString("_");
+}

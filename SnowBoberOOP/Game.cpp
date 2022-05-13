@@ -1,17 +1,18 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "Game.h"
-#include "ConstValues.h"
+#include <Windows.h>
+#include <WinBase.h>
 #include <iostream>
 #include <thread>
 #include <chrono>
 #include <random>
 #include <cmath> 
+#include "Game.h"
+#include "ConstValues.h"
 #include "Grid.h"
 #include "GridStick.h"
 #include "Box.h"
-#include <Windows.h>
-#include <WinBase.h>
+#include "RotatedRectangle.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -29,6 +30,10 @@ Game::Game() {
     textBox.setPosition({300, 450});
 
     highScores.readHighScores();
+
+    gameMusic.openFromFile("assets/boberMusic.wav");
+    gameMusic.setLoop(true);
+    gameMusic.setVolume(50);
 
     srand(time(0));
     gameFrame = 0;
@@ -72,7 +77,10 @@ void Game::gameLoop() {
                         player.jump(gameFrame);break;
                     case sf::Keyboard::LControl:
                         player.crouch();break;
-
+                    case sf::Keyboard::Escape:
+                        gameState = GameState::PAUSE;
+                        gameMusic.pause();
+                        break;
                     }break;
                 }
                 else if (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER) {
@@ -87,18 +95,29 @@ void Game::gameLoop() {
                         createMainMenuWorld();
                     }
                 }
+                else if (gameState == GameState::PAUSE) {
+                    switch (event.key.code)
+                    {
+                    case sf::Keyboard::Escape:
+                        gameState = GameState::MAIN_MENU;
+                        createMainMenuWorld();
+                        gameMusic.stop();
+                        break;
+                    case sf::Keyboard::Enter:
+                        gameMusic.play();
+                        gameState = GameState::GAMEPLAY;
+                        break;
+                    }break;
+                }
             }
         }
-
 
         window.clear();
         window.setView(view);
 
-        //gameFrame++;
-
         std::chrono::milliseconds current_ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
-        if (current_ms > ms + timestep) {
+        if (current_ms > ms + timestep && gameState != GameState::PAUSE) {
             gameFrame++;
             updateWorld();
             ms = current_ms;
@@ -123,7 +142,6 @@ void Game::updateWorld() {
 
     }
     else if (gameState == GameState::GAMEPLAY) {
-
         detectInput(gameFrame);
 
         move(gameFrame);
@@ -153,11 +171,14 @@ void Game::renderWorld() {
         case GameState::MAIN_MENU: drawStart(); break;
         case GameState::GAMEPLAY: drawGame(); break;
         case GameState::GAME_OVER: drawEnd(); break;
+        case GameState::PAUSE: drawGame(); break;
     }
 }
 
 void Game::createMainMenuWorld() {
     resetWorld();
+    textBox.clear();
+
     sf::Vector2u size = texturesManager.start.getSize();
     float scaleX = ConstValues::V_WIDTH / float(size.x);
     float scaleY = ConstValues::V_HEIGHT / float(size.y);
@@ -183,10 +204,15 @@ void Game::createGameWorld(std::string playerName_) {
     backgrounds.push_back(background2);
     player = Player(Position(ConstValues::BOBER_DEFAULT_POSITION_X, ConstValues::BOBER_DEFAULT_POSITION_Y),
         Visual(texturesManager.boberStand, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT), playerName_);
+
+    gameMusic.play();
 }
 
 void Game::createGameOverWorld(int score) {
     resetWorld();
+
+    gameMusic.stop();
+
     result = score;
 
     text.setCharacterSize(24);
@@ -233,7 +259,6 @@ void Game::drawHighScores() {
             window.draw(text);
         }
     }
-
 }
 
 void Game::drawStart() {
@@ -254,7 +279,6 @@ void Game::drawEnd() {
 }
 
 void Game::drawGame() {
-
     for (Background& background : backgrounds) {
         background.render(window);
     }
@@ -316,38 +340,13 @@ void Game::detectCollisions() {
         player.collide(&scorePoints.at(i));
         scorePoints.erase(scorePoints.begin() + i);
     }
-
     
     for (unsigned int i = 0; i < obstacles.size(); i++) {
-    
         if (player.isImmortal()) {
             player.updateImmortal();
             return;
         }
 
-        /*
-        sf::RectangleShape rsh;
-        //rsh.setTextureRect(sf::IntRect(player.getVisual().getSprite().getGlobalBounds()));
-        rsh.setOutlineColor(sf::Color::Red);
-        rsh.setSize(sf::Vector2f(player.getVisual().getSprite().getLocalBounds().width * player.getVisual().getScaleX(),
-            player.getVisual().getSprite().getLocalBounds().height * player.getVisual().getScaleY()));
-        rsh.setOrigin(rsh.getSize().x / 2, rsh.getSize().y / 2);
-        rsh.setRotation(player.getVisual().getRotation());
-        rsh.setPosition(player.getPosition().getX() + rsh.getSize().x / 2, player.getPosition().getY() + rsh.getSize().y / 2);
-        
-       
-        
-
-        sf::RectangleShape rsh2;
-        //rsh2.setTextureRect(sf::IntRect(obs_p->getVisual().getSprite().getGlobalBounds()));
-        rsh2.setOutlineColor(sf::Color::Red);
-        rsh2.setPosition(obs_p->getPosition().getX(), obs_p->getPosition().getY());
-        rsh2.setSize(sf::Vector2f(obs_p->getVisual().getSprite().getGlobalBounds().width, obs_p->getVisual().getSprite().getGlobalBounds().height));
-        
-        
-        window.draw(rsh);
-        window.draw(rsh2);
-*/ 
         Obstacle* obs_p = obstacles.at(i).get();
         CollisionType type = intersects(player, obs_p);
         
@@ -359,11 +358,6 @@ void Game::detectCollisions() {
         if (type == CollisionType::NONE) {
             continue;
         }
-        /*if (obstacles.at(i)->getObstacleType() == ObstacleType::RAIL) {
-            Rail* rail = (Rail*)(obs_p);
-            collisionFlag = getOffRail(*rail);
-        }*/
-
         
         if (collisionFlag) player.collide(obs_p);
     }
@@ -376,44 +370,26 @@ CollisionType Game::intersects(Player player, Obstacle* obstacle) {
     if (obstacle->getObstacleType() == ObstacleType::RAIL && obstacleInfo.rectangle.height < 1.f) {
         return CollisionType::NONE;
     }
-    //playerInfo.rectangle.left = player.getPosition().getX();
-    //playerInfo.rectangle.top = player.getPosition().getY();
-    //playerInfo.rectangle.width = player.getVisual().getSprite().getGlobalBounds().width;
-   // playerInfo.rectangle.height = player.getVisual().getSprite().getGlobalBounds().height;   
-    
+
     sf::RectangleShape rsh;
     rsh.setTextureRect(sf::IntRect(player.getVisual().getSprite().getGlobalBounds()));
     rsh.setSize(sf::Vector2f(player.getVisual().getSprite().getLocalBounds().width * player.getVisual().getScaleX(),
         player.getVisual().getSprite().getLocalBounds().height * player.getVisual().getScaleY()));
     rsh.setOrigin(rsh.getSize().x / 2, rsh.getSize().y / 2);
-    rsh.setRotation(player.getVisual().getRotation());
     rsh.setPosition(player.getPosition().getX() + rsh.getSize().x / 2, player.getPosition().getY() + rsh.getSize().y / 2);
-
-    //window.draw(rsh);
 
     playerInfo.rectangle = sf::IntRect(rsh.getGlobalBounds());
 
     obstacleInfo.rectangle.left = obstacle->getPosition().getX();
-    obstacleInfo.rectangle.top = obstacle->getPosition().getY() + 30;
+    obstacleInfo.rectangle.top = obstacle->getPosition().getY();
     obstacleInfo.rectangle.width = obstacle->getVisual().getSprite().getGlobalBounds().width;
     obstacleInfo.rectangle.height = obstacle->getVisual().getSprite().getGlobalBounds().height;
 
-    /*sf::RectangleShape rsh2;
-    //rsh2.setTextureRect(sf::IntRect(obs_p->getVisual().getSprite().getGlobalBounds()));
-    rsh2.setOutlineColor(sf::Color::Red);
-    rsh2.setPosition(obstacle->getPosition().getX(), obstacle->getPosition().getY());
-    rsh2.setSize(sf::Vector2f(obstacle->getVisual().getSprite().getGlobalBounds().width, obstacle->getVisual().getSprite().getGlobalBounds().height));
+    RotatedRectangle playerRect = RotatedRectangle(sf::FloatRect(playerInfo.rectangle), player.getVisual().getRotation());
+    RotatedRectangle obstacleRect = RotatedRectangle(sf::FloatRect(obstacleInfo.rectangle), obstacle->getVisual().getRotation());
 
-    obstacleInfo.rectangle = sf::IntRect(rsh2.getGlobalBounds());*/
-
-    //intersects(rsh.getGlobalBounds(), rsh.getRotation(), rsh2.getGlobalBounds());
-
-    if (touch(playerInfo.rectangle, obstacleInfo.rectangle)) {
-        return CollisionType::TOUCH;
-    }
-    if (playerInfo.rectangle.intersects(obstacleInfo.rectangle)) {
+    if (playerRect.intersects(obstacleRect))
         return CollisionType::INTERSECT;
-    }
 
     return CollisionType::NONE;
 }

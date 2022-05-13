@@ -2,6 +2,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "GameState.h"
 #include "Player.h"
 #include "Obstacle.h"
@@ -33,6 +34,8 @@ private:
 
      HighScores highScores;
      std::string highScoresPath = "highscores.json";
+
+     sf::Music gameMusic;
 
      long gameFrame;
      int obstacleFrame;

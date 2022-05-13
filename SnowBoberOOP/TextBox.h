@@ -41,5 +41,7 @@ public :
 	void inputLogic(int charTyped);
 
 	void deleteLastChar();
+
+	void clear();
 };
 
