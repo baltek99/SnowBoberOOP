@@ -242,7 +242,6 @@ void Game::resetWorld() {
     obstacleFrame = 0;
     obstacleSpawnRate = 300;
     currentObstacleSpeed = -3;
-    //player = null;
     obstacles.clear();
     scorePoints.clear();
     backgrounds.clear();
@@ -340,13 +339,13 @@ void Game::detectCollisions() {
         player.collide(&scorePoints.at(i));
         scorePoints.erase(scorePoints.begin() + i);
     }
-    
-    for (unsigned int i = 0; i < obstacles.size(); i++) {
-        if (player.isImmortal()) {
-            player.updateImmortal();
-            return;
-        }
 
+    if (player.isImmortal()) {
+        player.updateImmortal();
+        return;
+    }
+
+    for (unsigned int i = 0; i < obstacles.size(); i++) {
         Obstacle* obs_p = obstacles.at(i).get();
         CollisionType type = intersects(player, obs_p);
         
@@ -359,7 +358,10 @@ void Game::detectCollisions() {
             continue;
         }
         
-        if (collisionFlag) player.collide(obs_p);
+        if (collisionFlag) {
+            player.collide(obs_p);
+            obs_p->collide(&player);
+        }
     }
 }
 

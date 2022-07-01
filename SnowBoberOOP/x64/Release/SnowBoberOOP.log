@@ -1,40 +1,7 @@
-﻿  Game.cpp
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(38,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(250,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(252,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(381,63): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(382,62): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(383,87): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-          and
-          [
-              T=int
-          ]
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(384,88): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-          and
-          [
-              T=int
-          ]
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(405,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\SnowBoberOOP\Game.cpp(406,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+﻿  GridStick.cpp
   Generating code
-  4 of 1075 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  12 of 1080 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    14 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  SnowBoberOOP.vcxproj -> C:\Users\natal\OneDrive\Pulpit\SnowBoberOOP\x64\Release\SnowBoberOOP.exe
+  SnowBoberOOP.vcxproj -> C:\Users\natal\Desktop\SnowBoberOOP\x64\Release\SnowBoberOOP.exe
