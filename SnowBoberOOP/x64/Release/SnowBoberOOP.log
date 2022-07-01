@@ -1,7 +1,40 @@
-﻿  GridStick.cpp
+﻿  Game.cpp
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(38,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(262,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(264,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(396,63): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(397,62): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(398,87): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(399,88): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(420,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberOOP\SnowBoberOOP\Game.cpp(421,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating code
-  12 of 1080 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
+  2 of 1080 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    14 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SnowBoberOOP.vcxproj -> C:\Users\natal\Desktop\SnowBoberOOP\x64\Release\SnowBoberOOP.exe

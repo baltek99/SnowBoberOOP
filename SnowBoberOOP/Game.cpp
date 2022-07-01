@@ -234,7 +234,14 @@ void Game::createHighScoreWorld() {
     resetWorld();
 
     text.setCharacterSize(24);
-    text.setFillColor(sf::Color::White);
+    text.setFillColor(sf::Color::Black);
+
+    sf::Vector2u size = texturesManager.highScores.getSize();
+    float scaleX = ConstValues::V_WIDTH / float(size.x);
+    float scaleY = ConstValues::V_HEIGHT / float(size.y);
+
+    Background background = Background(Position(0, 0), Visual(texturesManager.highScores, scaleX, scaleY), 0);
+    backgrounds.push_back(background);
 }
 
 void Game::resetWorld() {
@@ -248,6 +255,10 @@ void Game::resetWorld() {
 }
 
 void Game::drawHighScores() {
+    for (Background& background : backgrounds) {
+        background.render(window);
+    }
+
     int size = highScores.getScores().size();
     if (size != 0) {
         int inc = ConstValues::V_HEIGHT / size;
