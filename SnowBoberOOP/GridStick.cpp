@@ -1,6 +1,5 @@
 #include "GridStick.h"
 #include "Player.h"
-#include <iostream>
 
 GridStick::GridStick(const Position &position_, int speed_) :
 	Obstacle(position_, Visual(TexturesManager::gridStick, ConstValues::GRID_WIDTH, ConstValues::GRID_HEIGHT), speed_, ObstacleType::GRID_STICK) {
@@ -11,7 +10,6 @@ void GridStick::collide(ICollidable *object) {
 	Player* player = static_cast<Player*>(object);
 
 	if (player->getPlayerState() != PlayerState::CROUCH) {
-		//getVisual().setTexture(TexturesManager::gridBroken);
 		getVisual().getSprite().setScale(0, 0);
 	}
 }
