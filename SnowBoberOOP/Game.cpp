@@ -69,6 +69,7 @@ void Game::gameLoop() {
                 if (gameState == GameState::MAIN_MENU) {
                     textBox.typedOn(event);
                 }
+                break;
             case sf::Event::KeyPressed:
                 if (gameState == GameState::GAMEPLAY) {
                     switch (event.key.code)
@@ -87,13 +88,13 @@ void Game::gameLoop() {
                     if (event.key.code == sf::Keyboard::Tab) {
                         gameState = GameState::HIGH_SCORES;
                         createHighScoreWorld();
-                    }
+                    }break;
                 }
                 else if (gameState == GameState::HIGH_SCORES) {
                     if (event.key.code == sf::Keyboard::Tab) {
                         gameState = GameState::MAIN_MENU;
                         createMainMenuWorld();
-                    }
+                    }break;
                 }
                 else if (gameState == GameState::PAUSE) {
                     switch (event.key.code)
@@ -108,7 +109,7 @@ void Game::gameLoop() {
                         gameState = GameState::GAMEPLAY;
                         break;
                     }break;
-                }
+                }break;
             }
         }
 
