@@ -1,11 +1,7 @@
 #pragma once
-#ifndef ENTITY_H
-#define ENTITY_H
-
 #include "Position.h"
 
-class Entity
-{
+class Entity {
 protected:
 	Position position;
 
@@ -20,5 +16,3 @@ public:
 
 	virtual ~Entity();
 };
-#endif // !ENTITY_H
-

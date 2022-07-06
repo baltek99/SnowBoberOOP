@@ -13,8 +13,7 @@
 #include "TexturesManager.h"
 #include "TextBox.h"
 
-class Game
-{
+class Game {
 public:
      sf::RenderWindow window;
      sf::View view;
@@ -102,4 +101,3 @@ public :
 
     void resizeView(sf::RenderWindow& window_, sf::View& view_);
 };
-

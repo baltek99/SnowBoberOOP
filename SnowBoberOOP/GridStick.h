@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Obstacle.h"
 
 class GridStick : public Obstacle {
@@ -8,4 +7,3 @@ public :
 
     void collide(ICollidable *object) override;
 };
-

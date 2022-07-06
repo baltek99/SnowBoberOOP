@@ -1,9 +1,7 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include "Game.h"
 
-int main()
-{
+int main() {
     Game snowBoberGame;
 
     TexturesManager texturesManager;
@@ -12,4 +10,3 @@ int main()
 
     return 0;
 }
-

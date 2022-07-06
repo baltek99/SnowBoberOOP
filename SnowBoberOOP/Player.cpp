@@ -162,22 +162,11 @@ void Player::move(long gameFrame) {
 }
 
 void Player::speedUp(long gameFrame) {
-    if (gameFrame == 2*ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
-        jumpHeight = 110;
-        jumpDuration = 80;
-        flipRotationSpeed = 4.5f;
-    }
-    else if (gameFrame == 3 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
-        jumpDuration = 65;
-        flipRotationSpeed = 5.5f;
-    }
-    else if (gameFrame == 6 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
-        jumpDuration = 55;
-        flipRotationSpeed = 6.0f;
-    }
-    else if (gameFrame == 8 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
+    if (gameFrame % ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT == 0) {
         jumpDuration = jumpDuration - jumpDuration / speedCount;
         flipRotationSpeed = flipRotationSpeed + flipRotationSpeed / speedCount;
+        ollieUpRotationSpeed = ollieUpRotationSpeed + ollieUpRotationSpeed / speedCount;
+        ollieDownRotationSpeed = ollieDownRotationSpeed + ollieDownRotationSpeed / speedCount;
         speedCount++;
     }
 }

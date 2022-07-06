@@ -16,7 +16,5 @@ Position& Entity::getPosition() {
 	return position;
 }
 
-Entity::~Entity()
-{
+Entity::~Entity() {
 }
-

@@ -8,15 +8,13 @@
 #define ENTER_KEY 13
 #define ESCAPE_KEY 27
 
-class TextBox
-{
+class TextBox {
 private:
 	sf::Text textBox;
 	std::ostringstream text;
 	bool isSelected;
 	bool hasLimit;
 	int limit;
-
 public :
 	TextBox();
 
@@ -44,4 +42,3 @@ public :
 
 	void clear();
 };
-

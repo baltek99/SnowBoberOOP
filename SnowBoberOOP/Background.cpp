@@ -1,7 +1,8 @@
 #include "Background.h"
 #include "ConstValues.h"
 
-Background::Background(const Position &position_, const Visual &visual_, int speed_) : EntityWithTexture(position_, visual_), speed(speed_) {}
+Background::Background(const Position &position_, const Visual &visual_, int speed_) : EntityWithTexture(position_, visual_), speed(speed_) {
+}
 
 void Background::fixPosition() {
     int pos = position.getX();

@@ -8,4 +8,3 @@ public :
 
 	void collide(ICollidable *object) override;
 };
-

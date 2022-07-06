@@ -1,8 +1,10 @@
 #include "Position.h"
 
-Position::Position() : x(0), y(0) {}
+Position::Position() : x(0), y(0) {
+}
 
-Position::Position(float x_, float y_) : x(x_), y(y_) {}
+Position::Position(float x_, float y_) : x(x_), y(y_) {
+}
 
 float Position::getX() const {
 	return x;

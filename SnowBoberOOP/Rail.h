@@ -2,8 +2,7 @@
 
 #include "Obstacle.h"
 
-class Rail : public Obstacle
-{
+class Rail : public Obstacle {
 public :
     Rail(const Position &position_, int speed_);
 
@@ -11,4 +10,3 @@ public :
     
     void collide(ICollidable *object) override;
 };
-

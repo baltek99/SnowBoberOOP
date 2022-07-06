@@ -49,7 +49,6 @@ Game::~Game() {}
 void Game::gameLoop() {
     int fps = 100;
     std::chrono::milliseconds timestep = std::chrono::milliseconds(1000/fps);
-
     std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
     while (window.isOpen())
@@ -378,7 +377,6 @@ void Game::detectCollisions() {
 }
 
 CollisionType Game::intersects(Player player, Obstacle* obstacle) { 
-
     CollisionInfo playerInfo = player.getCollisionInfo();
     CollisionInfo obstacleInfo = obstacle->getCollisionInfo();
     if (obstacle->getObstacleType() == ObstacleType::RAIL && obstacleInfo.rectangle.height < 1.f) {

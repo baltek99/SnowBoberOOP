@@ -5,9 +5,11 @@
 #include <vector>
 #include <cassert>
 
-ResultBind::ResultBind() : name(""), score(0) {}
+ResultBind::ResultBind() : name(""), score(0) {
+}
 
-ResultBind::ResultBind(const std::string name_, int score_) : name(name_), score(score_) {}
+ResultBind::ResultBind(const std::string name_, int score_) : name(name_), score(score_) {
+}
 
 std::string ResultBind::getName() const {
 	return name;

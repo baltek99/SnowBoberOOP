@@ -23,5 +23,3 @@ public:
 
     virtual void render(sf::RenderWindow &window) override;
 };
-
-

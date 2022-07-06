@@ -16,4 +16,3 @@ public:
 
     void speedUp(long gameFrame) override;
 };
-

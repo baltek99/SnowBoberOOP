@@ -23,6 +23,4 @@ public:
     void speedUp(long gameFrame) override;
 
     void move(long gameFrame) override;
-
 };
-

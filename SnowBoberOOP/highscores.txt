@@ -1,7 +1,5 @@
-Bart
-12
-Bart
-13
+Bartek
+14
 Bartek
 18
 Bartek
@@ -12,6 +10,8 @@ Bober
 24
 Bartek
 28
+Bartek
+29
 Bartek
 41
 Bartek

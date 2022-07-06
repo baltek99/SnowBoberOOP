@@ -1,9 +1,6 @@
 #pragma once
-#ifndef POSITION_H
-#define POSITION_H
 
-class Position
-{
+class Position {
 private:
 	float x;
 	float y;
@@ -21,5 +18,3 @@ public:
 
 	void setY(float y_);
 };
-#endif // !POSITION_H
-

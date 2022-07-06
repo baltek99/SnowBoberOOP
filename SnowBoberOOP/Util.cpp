@@ -1,6 +1,6 @@
 #include "Util.h"
-
 #include <cmath>
+
 using namespace std;
 
 float Util::lerp(float start_value, float end_value, float pct) {

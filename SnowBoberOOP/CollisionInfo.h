@@ -3,8 +3,7 @@
 #include "CollisionType.h"
 #include <SFML/Graphics.hpp>
 
-class CollisionInfo
-{
+class CollisionInfo {
 public :
     sf::IntRect rectangle;
     CollisionType collisionType;
@@ -15,4 +14,3 @@ public :
 
     CollisionInfo(const sf::IntRect& rect);
 };
-

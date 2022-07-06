@@ -3,11 +3,9 @@
 #include <string>
 
 class ResultBind {
-
 private:
 	std::string name;
 	int score;
-
 public:
 	ResultBind();
 
